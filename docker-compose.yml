@@ -40,3 +40,4 @@ services:
         image: redis:7.2-alpine
         ports:
             - '${FORWARD_REDIS_PORT}:6379'
+
