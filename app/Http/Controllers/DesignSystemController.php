@@ -118,12 +118,12 @@ class DesignSystemController extends Controller
                 'input' => [
                     'name' => 'Input',
                     'description' => 'Form input with validation states',
-                    'status' => 'planned'
+                    'status' => 'implemented'
                 ],
                 'textarea' => [
                     'name' => 'Textarea',
                     'description' => 'Multi-line text input with auto-resize',
-                    'status' => 'planned'
+                    'status' => 'implemented'
                 ]
             ],
             'layout' => [
@@ -205,6 +205,30 @@ class DesignSystemController extends Controller
 </x-ds-button>'
                     ]
                 ];
+            case 'input':
+                return [
+                    'basic' => [
+                        'title' => 'Basic Usage',
+                        'code' => '<x-ds-input label="Full Name" placeholder="Enter your name" />'
+                    ],
+                    'types' => [
+                        'title' => 'Input Types',
+                        'code' => '<x-ds-input type="email" label="Email" placeholder="user@example.com" />
+<x-ds-input type="password" label="Password" />
+<x-ds-input type="number" label="Age" min="0" max="120" />'
+                    ],
+                    'validation' => [
+                        'title' => 'Validation States',
+                        'code' => '<x-ds-input label="Valid Input" value="Valid value" />
+<x-ds-input label="Error Input" error-message="This field is required" />
+<x-ds-input label="Help Text" help-text="Enter at least 8 characters" />'
+                    ],
+                    'icons' => [
+                        'title' => 'With Icons',
+                        'code' => '<x-ds-input label="Search" icon-left="fas fa-search" />
+<x-ds-input label="Email" type="email" icon-right="fas fa-envelope" />'
+                    ]
+                ];
             default:
                 return [];
         }
@@ -246,6 +270,50 @@ class DesignSystemController extends Controller
                         'description' => 'Render as link if URL provided'
                     ]
                 ];
+            case 'input':
+                return [
+                    'type' => [
+                        'type' => 'string',
+                        'default' => 'text',
+                        'options' => ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+                        'description' => 'HTML input type'
+                    ],
+                    'label' => [
+                        'type' => 'string|null',
+                        'default' => null,
+                        'description' => 'Input label text'
+                    ],
+                    'placeholder' => [
+                        'type' => 'string|null',
+                        'default' => null,
+                        'description' => 'Placeholder text'
+                    ],
+                    'value' => [
+                        'type' => 'string|null',
+                        'default' => null,
+                        'description' => 'Input value'
+                    ],
+                    'required' => [
+                        'type' => 'boolean',
+                        'default' => false,
+                        'description' => 'Mark as required field'
+                    ],
+                    'disabled' => [
+                        'type' => 'boolean',
+                        'default' => false,
+                        'description' => 'Disable the input'
+                    ],
+                    'error-message' => [
+                        'type' => 'string|null',
+                        'default' => null,
+                        'description' => 'Error message to display'
+                    ],
+                    'help-text' => [
+                        'type' => 'string|null',
+                        'default' => null,
+                        'description' => 'Help text to display'
+                    ]
+                ];
             default:
                 return [];
         }
@@ -262,6 +330,15 @@ class DesignSystemController extends Controller
                     'click()' => 'Programmatically trigger button click',
                     'focus()' => 'Focus the button element',
                     'blur()' => 'Remove focus from button'
+                ];
+            case 'input':
+                return [
+                    'focus()' => 'Focus the input element',
+                    'blur()' => 'Remove focus from input',
+                    'clear()' => 'Clear input value and reset state',
+                    'setValue(value)' => 'Set input value programmatically',
+                    'getValue()' => 'Get current input value',
+                    'validate()' => 'Trigger validation and return result'
                 ];
             default:
                 return [];

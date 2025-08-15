@@ -1,6 +1,11 @@
 /* DSUI Design System Styles */
 @use 'bulma/sass' as bulma;
 
+/* Import component-specific styles */
+@use 'components/button.scss';
+@use 'components/input.scss';
+@use 'components/textarea.scss';
+
 /* DSUI Custom Design Tokens */
 :root {
   /* Colors */
@@ -78,6 +83,3 @@
 .ds-button--info {
   background-color: var(--ds-info);
 }
-
-/* Import component-specific styles */
-@use 'components/button.scss';

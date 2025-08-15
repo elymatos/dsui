@@ -254,6 +254,8 @@ document.addEventListener('htmx:responseError', (event) => {
 
 // Import component definitions
 import './components/button.js';
+import './components/input.js';
+import './components/textarea.js';
 
 // Start Alpine
 Alpine.start();
