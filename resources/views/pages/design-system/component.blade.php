@@ -53,56 +53,106 @@
                                         
                                         <div class="card">
                                             <div class="card-content">
-                                                @if($exampleKey === 'basic')
-                                                    <x-ds-button>Click me</x-ds-button>
-                                                @elseif($exampleKey === 'variants')
-                                                    <div class="field is-grouped">
-                                                        <div class="control">
-                                                            <x-ds-button variant="primary">Primary</x-ds-button>
+                                                @if($component['id'] === 'button')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-button>Click me</x-ds-button>
+                                                    @elseif($exampleKey === 'variants')
+                                                        <div class="field is-grouped">
+                                                            <div class="control">
+                                                                <x-ds-button variant="primary">Primary</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="secondary">Secondary</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="success">Success</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="warning">Warning</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="danger">Danger</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="info">Info</x-ds-button>
+                                                            </div>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button variant="secondary">Secondary</x-ds-button>
+                                                    @elseif($exampleKey === 'states')
+                                                        <div class="field is-grouped">
+                                                            <div class="control">
+                                                                <x-ds-button :loading="true">Loading</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button :disabled="true">Disabled</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button :outlined="true">Outlined</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button :rounded="true">Rounded</x-ds-button>
+                                                            </div>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button variant="success">Success</x-ds-button>
+                                                    @endif
+                                                @elseif($component['id'] === 'input')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-input label="Full Name" placeholder="Enter your name" />
+                                                    @elseif($exampleKey === 'types')
+                                                        <div class="columns">
+                                                            <div class="column">
+                                                                <x-ds-input type="email" label="Email" placeholder="user@example.com" />
+                                                            </div>
+                                                            <div class="column">
+                                                                <x-ds-input type="password" label="Password" />
+                                                            </div>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button variant="warning">Warning</x-ds-button>
+                                                        <div class="columns">
+                                                            <div class="column">
+                                                                <x-ds-input type="number" label="Age" min="0" max="120" />
+                                                            </div>
+                                                            <div class="column">
+                                                                <x-ds-input type="tel" label="Phone" placeholder="+1 (555) 123-4567" />
+                                                            </div>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button variant="danger">Danger</x-ds-button>
+                                                    @elseif($exampleKey === 'validation')
+                                                        <div class="columns">
+                                                            <div class="column">
+                                                                <x-ds-input label="Valid Input" value="Valid value" class="is-success" />
+                                                            </div>
+                                                            <div class="column">
+                                                                <x-ds-input label="Error Input" error-message="This field is required" />
+                                                            </div>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button variant="info">Info</x-ds-button>
+                                                        <div class="column">
+                                                            <x-ds-input label="Help Text" help-text="Enter at least 8 characters" />
                                                         </div>
-                                                    </div>
-                                                @elseif($exampleKey === 'states')
-                                                    <div class="field is-grouped">
-                                                        <div class="control">
-                                                            <x-ds-button :loading="true">Loading</x-ds-button>
+                                                    @endif
+                                                @elseif($component['id'] === 'textarea')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-textarea label="Message" placeholder="Enter your message" />
+                                                    @elseif($exampleKey === 'resize')
+                                                        <x-ds-textarea label="Auto-resize Comments" :auto-resize="true" rows="3" placeholder="This textarea will auto-resize as you type..." />
+                                                    @endif
+                                                @elseif($component['id'] === 'modal')
+                                                    @if($exampleKey === 'basic')
+                                                        <div x-data="{ showModal: false }">
+                                                            <x-ds-button @click="showModal = true" variant="primary">Open Modal</x-ds-button>
+                                                            
+                                                            <x-ds-modal x-show="showModal" @close="showModal = false" title="Example Modal">
+                                                                <p>This is a modal dialog with focus management and accessibility features.</p>
+                                                                <p>Press <kbd>Escape</kbd> to close or click the close button.</p>
+                                                                
+                                                                <x-slot name="footer">
+                                                                    <x-ds-button @click="showModal = false" variant="primary">Confirm</x-ds-button>
+                                                                    <x-ds-button @click="showModal = false" variant="secondary">Cancel</x-ds-button>
+                                                                </x-slot>
+                                                            </x-ds-modal>
                                                         </div>
-                                                        <div class="control">
-                                                            <x-ds-button :disabled="true">Disabled</x-ds-button>
-                                                        </div>
-                                                        <div class="control">
-                                                            <x-ds-button :outlined="true">Outlined</x-ds-button>
-                                                        </div>
-                                                        <div class="control">
-                                                            <x-ds-button :rounded="true">Rounded</x-ds-button>
-                                                        </div>
-                                                    </div>
-                                                @elseif($exampleKey === 'alpine')
-                                                    <x-ds-button 
-                                                        variant="primary"
-                                                        :alpine-data="['onClick' => 'handleInteractiveClick']"
-                                                        x-data="componentDemo()">
-                                                        Interactive Button
-                                                    </x-ds-button>
-                                                    
-                                                    <div x-data="componentDemo()" class="mt-3">
-                                                        <p x-show="clickCount > 0" class="notification is-info is-light">
-                                                            Button clicked <strong x-text="clickCount"></strong> times!
-                                                        </p>
+                                                    @endif
+                                                @else
+                                                    {{-- Generic component display --}}
+                                                    <div class="notification is-info is-light">
+                                                        <p><strong>{{ $component['name'] }} Component</strong></p>
+                                                        <p>Live interactive example coming soon. Check the code examples below.</p>
                                                     </div>
                                                 @endif
                                             </div>
