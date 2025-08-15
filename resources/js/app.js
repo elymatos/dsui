@@ -14,7 +14,7 @@ window.htmx = htmx;
 htmx.config.globalViewTransitions = true;
 htmx.config.useTemplateFragments = true;
 
-// DSUI Component Registry
+// DSUI Component Registry - Must be defined BEFORE component imports
 window.DS = {
     component: {},
     store: Alpine.store,
@@ -255,29 +255,36 @@ document.addEventListener('htmx:responseError', (event) => {
     });
 });
 
-// Import component definitions after DS is initialized
-import './components/button.js';
-import './components/input.js';
-import './components/textarea.js';
-import './components/select.js';
-import './components/checkbox.js';
-import './components/radio.js';
-import './components/heading.js';
-import './components/text.js';
-import './components/link.js';
-import './components/container.js';
-import './components/alert.js';
-import './components/modal.js';
-import './components/tabs.js';
-import './components/toast.js';
-import './components/data-table.js';
-import './components/dropdown.js';
-import './components/form-wizard.js';
-import './components/tooltip.js';
-import './components/popover.js';
+// Initialize components after DS is available
+async function initializeComponents() {
+    // Dynamic imports to ensure DS is available
+    await import('./components/button.js');
+    await import('./components/input.js');
+    await import('./components/textarea.js');
+    await import('./components/select.js');
+    await import('./components/checkbox.js');
+    await import('./components/radio.js');
+    await import('./components/heading.js');
+    await import('./components/text.js');
+    await import('./components/link.js');
+    await import('./components/container.js');
+    await import('./components/alert.js');
+    await import('./components/modal.js');
+    await import('./components/tabs.js');
+    await import('./components/toast.js');
+    await import('./components/data-table.js');
+    await import('./components/dropdown.js');
+    await import('./components/form-wizard.js');
+    await import('./components/tooltip.js');
+    await import('./components/popover.js');
+    
+    console.log('DSUI: All component modules loaded');
+    console.log('DSUI: Available components:', Object.keys(DS.component));
+    
+    // Start Alpine after all components are loaded
+    Alpine.start();
+    console.log('DSUI: Design System initialized! 🎨');
+}
 
-// Start Alpine
-Alpine.start();
-
-console.log('DSUI: Design System initialized! 🎨');
-console.log('DSUI: Available components:', Object.keys(DS.component));
+// Initialize everything
+initializeComponents();
