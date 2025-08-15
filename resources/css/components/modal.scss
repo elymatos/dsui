@@ -1,0 +1,437 @@
+/**
+ * DSUI Modal Component Styles
+ * Comprehensive modal styling with animations, responsive design, and accessibility
+ */
+
+.ds-modal {
+  // Base modal styling (enhances Bulma's modal)
+  &.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    
+    // Hide by default
+    &:not(.is-active) {
+      display: none;
+    }
+  }
+  
+  // Modal overlay
+  .ds-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 10, 10, 0.86);
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+  }
+  
+  // Modal content container
+  .ds-modal-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    max-height: calc(100vh - 2rem);
+    overflow: hidden;
+    pointer-events: auto;
+    
+    // Modal card styling
+    .modal-card {
+      background-color: hsl(0, 0%, 100%);
+      border-radius: 6px;
+      box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 2rem);
+      overflow: hidden;
+    }
+  }
+  
+  // Modal header
+  .ds-modal-header {
+    background-color: hsl(0, 0%, 100%);
+    border-bottom: 1px solid hsl(0, 0%, 93%);
+    padding: 1.5rem;
+    position: relative;
+    
+    .ds-modal-title {
+      color: hsl(0, 0%, 21%);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0;
+    }
+    
+    .ds-modal-close {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      
+      &:hover {
+        background-color: hsl(0, 0%, 96%);
+        border-radius: 50%;
+      }
+      
+      &:focus {
+        outline: 2px solid hsl(217, 71%, 53%);
+        outline-offset: 2px;
+        border-radius: 50%;
+      }
+    }
+  }
+  
+  // Modal body
+  .ds-modal-body {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    
+    &.ds-modal-body--scrollable {
+      max-height: 60vh;
+    }
+    
+    .ds-modal-content-wrapper {
+      position: relative;
+    }
+    
+    // Loading overlay
+    .ds-modal-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 2;
+      
+      .ds-loading-spinner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .ds-loading-message {
+        color: hsl(0, 0%, 48%);
+        font-size: 0.875rem;
+      }
+    }
+  }
+  
+  // Modal footer
+  .ds-modal-footer {
+    background-color: hsl(0, 0%, 98%);
+    border-top: 1px solid hsl(0, 0%, 93%);
+    padding: 1rem 1.5rem;
+    
+    .ds-modal-footer-content {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      
+      .button {
+        margin: 0;
+      }
+    }
+  }
+  
+  // Size variations
+  &.ds-modal--small {
+    .ds-modal-content {
+      max-width: 400px;
+    }
+  }
+  
+  &.ds-modal--medium {
+    .ds-modal-content {
+      max-width: 800px;
+    }
+  }
+  
+  &.ds-modal--large {
+    .ds-modal-content {
+      max-width: 1024px;
+    }
+  }
+  
+  &.ds-modal--extra-large {
+    .ds-modal-content {
+      max-width: 1200px;
+    }
+  }
+  
+  &.ds-modal--fullscreen {
+    padding: 0;
+    
+    .ds-modal-content {
+      max-width: 100%;
+      max-height: 100vh;
+      
+      .modal-card {
+        max-height: 100vh;
+        border-radius: 0;
+      }
+    }
+  }
+  
+  // Centered modal
+  &.ds-modal--centered {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  // Animation variations
+  &.ds-modal--slide-up {
+    .ds-modal-content {
+      animation: slideUp 0.3s ease-out;
+    }
+  }
+  
+  &.ds-modal--slide-down {
+    .ds-modal-content {
+      animation: slideDown 0.3s ease-out;
+    }
+  }
+  
+  &.ds-modal--slide-left {
+    .ds-modal-content {
+      animation: slideLeft 0.3s ease-out;
+    }
+  }
+  
+  &.ds-modal--slide-right {
+    .ds-modal-content {
+      animation: slideRight 0.3s ease-out;
+    }
+  }
+  
+  &.ds-modal--zoom {
+    .ds-modal-content {
+      animation: zoomIn 0.3s ease-out;
+    }
+  }
+  
+  &.ds-modal--flip {
+    .ds-modal-content {
+      animation: flipIn 0.4s ease-out;
+    }
+  }
+  
+  // Persistent modal styling
+  &.ds-modal--persistent {
+    .ds-modal-overlay {
+      cursor: default;
+    }
+    
+    .ds-modal-close {
+      display: none;
+    }
+  }
+  
+  // Focus trap sentinels
+  .ds-modal-focus-sentinel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  // Responsive design
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem;
+    
+    .ds-modal-content {
+      max-width: 100%;
+      
+      .modal-card {
+        max-height: calc(100vh - 1rem);
+      }
+    }
+    
+    .ds-modal-header,
+    .ds-modal-body,
+    .ds-modal-footer {
+      padding: 1rem;
+    }
+    
+    &.ds-modal--fullscreen {
+      padding: 0;
+      
+      .ds-modal-content {
+        .modal-card {
+          max-height: 100vh;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .ds-modal-header {
+      .ds-modal-title {
+        font-size: 1.125rem;
+        padding-right: 2rem;
+      }
+    }
+    
+    .ds-modal-footer {
+      .ds-modal-footer-content {
+        flex-direction: column;
+        
+        .button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Body class when modal is open
+body.ds-modal-open {
+  overflow: hidden;
+  
+  // Prevent scroll on iOS Safari
+  position: fixed;
+  width: 100%;
+}
+
+// Modal trigger button
+.ds-modal-trigger {
+  cursor: pointer;
+  
+  &[aria-expanded="true"] {
+    // Optional styling for active trigger
+  }
+}
+
+// Animation keyframes
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .ds-modal {
+    .modal-card {
+      background-color: hsl(0, 0%, 14%);
+      color: hsl(0, 0%, 86%);
+    }
+    
+    .ds-modal-header {
+      background-color: hsl(0, 0%, 14%);
+      border-bottom-color: hsl(0, 0%, 21%);
+      
+      .ds-modal-title {
+        color: hsl(0, 0%, 86%);
+      }
+      
+      .ds-modal-close:hover {
+        background-color: hsl(0, 0%, 21%);
+      }
+    }
+    
+    .ds-modal-footer {
+      background-color: hsl(0, 0%, 10%);
+      border-top-color: hsl(0, 0%, 21%);
+    }
+    
+    .ds-modal-loading {
+      background-color: rgba(20, 20, 20, 0.9);
+      
+      .ds-loading-message {
+        color: hsl(0, 0%, 71%);
+      }
+    }
+  }
+}
+
+// Print styles (hide modals when printing)
+@media print {
+  .ds-modal {
+    display: none !important;
+  }
+}

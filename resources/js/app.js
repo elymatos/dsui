@@ -264,6 +264,10 @@ import './components/text.js';
 import './components/link.js';
 import './components/container.js';
 import './components/alert.js';
+import './components/modal.js';
+import './components/tabs.js';
+import './components/toast.js';
+import './components/data-table.js';
 
 // Start Alpine
 Alpine.start();
