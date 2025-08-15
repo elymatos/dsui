@@ -52,17 +52,13 @@ class DesignSystemServiceProvider extends ServiceProvider
         // Feedback Components
         Blade::component('ds-alert', \App\View\Components\DS\Feedback\Alert::class);
         Blade::component('ds-loading', \App\View\Components\DS\Feedback\Loading::class);
+        Blade::component('ds-modal', \App\View\Components\DS\Feedback\Modal::class);
+        Blade::component('ds-toast', \App\View\Components\DS\Feedback\Toast::class);
         
         // Form Components
         Blade::component('ds-form', \App\View\Components\DS\Forms\Form::class);
         Blade::component('ds-field', \App\View\Components\DS\Forms\Field::class);
         Blade::component('ds-fieldset', \App\View\Components\DS\Forms\Fieldset::class);
-        
-        // Feedback Components
-        Blade::component('ds-modal', \App\View\Components\DS\Feedback\Modal::class);
-        Blade::component('ds-alert', \App\View\Components\DS\Feedback\Alert::class);
-        Blade::component('ds-notification', \App\View\Components\DS\Feedback\Notification::class);
-        Blade::component('ds-loading', \App\View\Components\DS\Feedback\Loading::class);
         
         // Complex Components
         Blade::component('ds-data-table', \App\View\Components\DS\Complex\DataTable::class);

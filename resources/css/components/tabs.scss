@@ -1,0 +1,617 @@
+/* DSUI Tabs Component Styles */
+
+.ds-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  // Vertical orientation
+  &.ds-tabs--vertical {
+    flex-direction: row;
+    
+    .ds-tabs-nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: 1px solid hsl(0, 0%, 86%);
+      width: auto;
+      min-width: 200px;
+    }
+    
+    .ds-tabs-content {
+      flex: 1;
+      margin-left: var(--ds-spacing-md);
+    }
+  }
+  
+  // Position variants
+  &.ds-tabs--bottom {
+    flex-direction: column-reverse;
+    
+    .ds-tabs-nav {
+      border-bottom: none;
+      border-top: 1px solid hsl(0, 0%, 86%);
+    }
+  }
+  
+  &.ds-tabs--left {
+    flex-direction: row;
+    
+    .ds-tabs-nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: 1px solid hsl(0, 0%, 86%);
+      order: -1;
+    }
+  }
+  
+  &.ds-tabs--right {
+    flex-direction: row;
+    
+    .ds-tabs-nav {
+      flex-direction: column;
+      border-bottom: none;
+      border-left: 1px solid hsl(0, 0%, 86%);
+      order: 1;
+    }
+    
+    .ds-tabs-content {
+      margin-right: var(--ds-spacing-md);
+      margin-left: 0;
+    }
+  }
+  
+  // Style variants
+  &.ds-tabs--pills {
+    .ds-tab-button {
+      border-radius: var(--ds-radius-md);
+      border: none;
+      margin-right: var(--ds-spacing-xs);
+      
+      &.ds-tab-button--active {
+        background-color: var(--ds-primary);
+        color: white;
+        border-bottom: none;
+      }
+    }
+    
+    .ds-tabs-nav {
+      border-bottom: none;
+      gap: var(--ds-spacing-xs);
+    }
+  }
+  
+  &.ds-tabs--bordered {
+    .ds-tabs-nav {
+      background-color: hsl(0, 0%, 98%);
+      border: 1px solid hsl(0, 0%, 86%);
+      border-radius: var(--ds-radius-md) var(--ds-radius-md) 0 0;
+    }
+    
+    .ds-tabs-content {
+      border: 1px solid hsl(0, 0%, 86%);
+      border-top: none;
+      border-radius: 0 0 var(--ds-radius-md) var(--ds-radius-md);
+    }
+  }
+  
+  &.ds-tabs--segmented {
+    .ds-tabs-nav {
+      background-color: hsl(0, 0%, 96%);
+      border-radius: var(--ds-radius-md);
+      padding: var(--ds-spacing-xs);
+      border: 1px solid hsl(0, 0%, 86%);
+    }
+    
+    .ds-tab-button {
+      border-radius: calc(var(--ds-radius-md) - 2px);
+      border: none;
+      
+      &.ds-tab-button--active {
+        background-color: white;
+        box-shadow: var(--ds-shadow-sm);
+        border-bottom: none;
+      }
+    }
+  }
+  
+  // Animation
+  &.ds-tabs--animated {
+    .ds-tab-panel {
+      transition: opacity 0.2s ease-in-out;
+      
+      &:not(.ds-tab-panel--active) {
+        opacity: 0;
+      }
+      
+      &.ds-tab-panel--active {
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Scrollable
+  &.ds-tabs--scrollable {
+    .ds-tabs-nav {
+      position: relative;
+    }
+    
+    .ds-tabs-nav-wrapper {
+      overflow-x: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      &.ds-tabs-nav-wrapper--scrollable {
+        overflow-x: auto;
+      }
+    }
+  }
+  
+  // Centered
+  &.ds-tabs--centered {
+    .ds-tabs-nav {
+      justify-content: center;
+    }
+  }
+  
+  // Closable
+  &.ds-tabs--closable {
+    .ds-tab-button {
+      padding-right: calc(var(--ds-spacing-sm) + 20px);
+    }
+  }
+  
+  // Addable
+  &.ds-tabs--addable {
+    .ds-tabs-nav-wrapper {
+      padding-right: calc(var(--ds-spacing-md) + 32px);
+    }
+  }
+}
+
+// Tab Navigation
+.ds-tabs-nav {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+  background-color: white;
+  min-height: 48px;
+  position: relative;
+  
+  &.ds-tabs-nav--scrollable {
+    overflow: hidden;
+  }
+  
+  &.ds-tabs-nav--centered {
+    justify-content: center;
+  }
+}
+
+.ds-tabs-nav-wrapper {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  position: relative;
+  
+  &.ds-tabs-nav-wrapper--scrollable {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+}
+
+// Tab Buttons
+.ds-tab-button {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-xs);
+  padding: var(--ds-spacing-sm) var(--ds-spacing-md);
+  border: none;
+  background: transparent;
+  color: hsl(0, 0%, 29%);
+  font-size: var(--ds-font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  position: relative;
+  min-height: 48px;
+  
+  &:hover {
+    background-color: hsl(0, 0%, 98%);
+    color: var(--ds-primary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+  
+  &.ds-tab-button--active {
+    color: var(--ds-primary);
+    border-bottom-color: var(--ds-primary);
+    background-color: white;
+    
+    &:hover {
+      background-color: white;
+    }
+  }
+  
+  &.ds-tab-button--disabled,
+  &:disabled {
+    color: hsl(0, 0%, 71%);
+    cursor: not-allowed;
+    
+    &:hover {
+      background-color: transparent;
+      color: hsl(0, 0%, 71%);
+    }
+  }
+}
+
+.ds-tab-icon {
+  display: flex;
+  align-items: center;
+  font-size: var(--ds-font-size-sm);
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+}
+
+.ds-tab-label {
+  flex: 1;
+}
+
+.ds-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--ds-spacing-xs);
+  background-color: hsl(0, 0%, 86%);
+  color: hsl(0, 0%, 29%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9px;
+  line-height: 1;
+}
+
+.ds-tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: var(--ds-spacing-xs);
+  border: none;
+  background: transparent;
+  color: hsl(0, 0%, 48%);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: hsl(0, 0%, 86%);
+    color: var(--ds-danger);
+  }
+  
+  &:focus {
+    outline: 1px solid var(--ds-primary);
+    outline-offset: 1px;
+  }
+  
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+  }
+}
+
+.ds-tab-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: var(--ds-spacing-xs);
+  border: 1px dashed hsl(0, 0%, 71%);
+  background: transparent;
+  color: hsl(0, 0%, 48%);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  &:hover {
+    border-color: var(--ds-primary);
+    color: var(--ds-primary);
+    background-color: hsl(0, 0%, 98%);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: 2px;
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+}
+
+// Scroll Controls
+.ds-tabs-scroll-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-xs);
+  padding: 0 var(--ds-spacing-xs);
+  border-left: 1px solid hsl(0, 0%, 86%);
+  background-color: white;
+}
+
+.ds-tabs-scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid hsl(0, 0%, 86%);
+  background: white;
+  color: hsl(0, 0%, 48%);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover:not(:disabled) {
+    border-color: var(--ds-primary);
+    color: var(--ds-primary);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    color: hsl(0, 0%, 71%);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+}
+
+// Tab Content
+.ds-tabs-content {
+  background-color: white;
+  
+  &.ds-tabs-content--animated {
+    overflow: hidden;
+  }
+}
+
+.ds-tab-panel {
+  display: none;
+  padding: var(--ds-spacing-md);
+  min-height: 200px;
+  
+  &.ds-tab-panel--active {
+    display: block;
+  }
+  
+  &.ds-tab-panel--loading {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: -2px;
+  }
+}
+
+.ds-tab-content {
+  line-height: 1.6;
+}
+
+// Lazy Loading
+.ds-tab-lazy-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  background-color: hsl(0, 0%, 98%);
+  border: 1px dashed hsl(0, 0%, 86%);
+  border-radius: var(--ds-radius-md);
+}
+
+.ds-tab-load-button {
+  padding: var(--ds-spacing-sm) var(--ds-spacing-md);
+  border: 1px solid var(--ds-primary);
+  background: white;
+  color: var(--ds-primary);
+  border-radius: var(--ds-radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  
+  &:hover {
+    background-color: var(--ds-primary);
+    color: white;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Loading State
+.ds-tab-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-spacing-md);
+  min-height: 120px;
+  color: hsl(0, 0%, 48%);
+}
+
+.ds-loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid hsl(0, 0%, 86%);
+  border-top-color: var(--ds-primary);
+  border-radius: 50%;
+  animation: ds-spin 0.8s linear infinite;
+}
+
+@keyframes ds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ds-loading-message {
+  font-size: var(--ds-font-size-sm);
+  font-weight: 500;
+}
+
+// Error State
+.ds-tab-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-spacing-md);
+  min-height: 120px;
+  color: var(--ds-danger);
+  text-align: center;
+}
+
+.ds-error-icon {
+  font-size: 2rem;
+}
+
+.ds-error-message {
+  font-size: var(--ds-font-size-sm);
+  max-width: 300px;
+}
+
+.ds-tab-retry-button {
+  padding: var(--ds-spacing-xs) var(--ds-spacing-md);
+  border: 1px solid var(--ds-danger);
+  background: white;
+  color: var(--ds-danger);
+  border-radius: var(--ds-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--ds-font-size-sm);
+  
+  &:hover {
+    background-color: var(--ds-danger);
+    color: white;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--ds-danger);
+    outline-offset: 2px;
+  }
+}
+
+// Default Content
+.ds-tab-default-content {
+  padding: var(--ds-spacing-md);
+  min-height: 200px;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .ds-tabs--vertical,
+  .ds-tabs--left,
+  .ds-tabs--right {
+    flex-direction: column;
+    
+    .ds-tabs-nav {
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 1px solid hsl(0, 0%, 86%);
+      width: 100%;
+      min-width: auto;
+    }
+    
+    .ds-tabs-content {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  
+  .ds-tab-button {
+    padding: var(--ds-spacing-xs) var(--ds-spacing-sm);
+    font-size: var(--ds-font-size-xs);
+    min-height: 40px;
+  }
+  
+  .ds-tabs--scrollable {
+    .ds-tabs-nav-wrapper {
+      overflow-x: auto;
+    }
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .ds-tab-button {
+    border: 1px solid transparent;
+    
+    &:focus {
+      border-color: currentColor;
+    }
+    
+    &.ds-tab-button--active {
+      border-bottom-width: 3px;
+    }
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .ds-tab-button,
+  .ds-tab-close,
+  .ds-tab-add,
+  .ds-tabs-scroll-button,
+  .ds-tab-load-button,
+  .ds-tab-retry-button {
+    transition: none;
+  }
+  
+  .ds-tabs--animated .ds-tab-panel {
+    transition: none;
+  }
+  
+  .ds-spinner {
+    animation: none;
+  }
+}
