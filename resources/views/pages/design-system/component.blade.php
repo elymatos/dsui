@@ -132,6 +132,135 @@
                                                     @elseif($exampleKey === 'resize')
                                                         <x-ds-textarea label="Auto-resize Comments" :auto-resize="true" rows="3" placeholder="This textarea will auto-resize as you type..." />
                                                     @endif
+                                                @elseif($component['id'] === 'select')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-select label="Country" :options="[
+                                                            ['value' => 'us', 'label' => 'United States'],
+                                                            ['value' => 'ca', 'label' => 'Canada'],
+                                                            ['value' => 'uk', 'label' => 'United Kingdom'],
+                                                            ['value' => 'fr', 'label' => 'France']
+                                                        ]" placeholder="Select a country" />
+                                                    @endif
+                                                @elseif($component['id'] === 'checkbox')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="field">
+                                                            <x-ds-checkbox name="terms" label="I agree to the terms and conditions" />
+                                                        </div>
+                                                        <div class="field">
+                                                            <x-ds-checkbox name="newsletter" label="Subscribe to newsletter" :checked="true" />
+                                                        </div>
+                                                        <div class="field">
+                                                            <x-ds-checkbox name="disabled" label="Disabled option" :disabled="true" />
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'radio')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="field">
+                                                            <label class="label">Preferred Contact Method</label>
+                                                            <div class="field">
+                                                                <x-ds-radio name="contact" value="email" label="Email" :checked="true" />
+                                                            </div>
+                                                            <div class="field">
+                                                                <x-ds-radio name="contact" value="phone" label="Phone" />
+                                                            </div>
+                                                            <div class="field">
+                                                                <x-ds-radio name="contact" value="mail" label="Mail" />
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'heading')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-heading level="1">Heading Level 1</x-ds-heading>
+                                                        <x-ds-heading level="2">Heading Level 2</x-ds-heading>
+                                                        <x-ds-heading level="3">Heading Level 3</x-ds-heading>
+                                                        <x-ds-heading level="4">Heading Level 4</x-ds-heading>
+                                                        <x-ds-heading level="5">Heading Level 5</x-ds-heading>
+                                                        <x-ds-heading level="6">Heading Level 6</x-ds-heading>
+                                                    @endif
+                                                @elseif($component['id'] === 'text')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-text>This is regular paragraph text with default styling.</x-ds-text>
+                                                        <x-ds-text size="small">This is small text for captions or footnotes.</x-ds-text>
+                                                        <x-ds-text size="large">This is large text for emphasis.</x-ds-text>
+                                                        <x-ds-text weight="bold">This is bold text for strong emphasis.</x-ds-text>
+                                                        <x-ds-text color="primary">This is primary colored text.</x-ds-text>
+                                                    @endif
+                                                @elseif($component['id'] === 'link')
+                                                    @if($exampleKey === 'basic')
+                                                        <p>
+                                                            <x-ds-link href="#internal">Internal link</x-ds-link> - 
+                                                            <x-ds-link href="https://example.com" external="true">External link</x-ds-link> - 
+                                                            <x-ds-link href="mailto:test@example.com">Email link</x-ds-link>
+                                                        </p>
+                                                        <p>
+                                                            <x-ds-link href="#disabled" :disabled="true">Disabled link</x-ds-link>
+                                                        </p>
+                                                    @endif
+                                                @elseif($component['id'] === 'container')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-container>
+                                                            <div class="notification is-primary">
+                                                                <p>This content is inside a responsive container that adjusts to different screen sizes.</p>
+                                                            </div>
+                                                        </x-ds-container>
+                                                    @endif
+                                                @elseif($component['id'] === 'grid')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-grid>
+                                                            <div class="column is-4">
+                                                                <div class="notification is-primary">Column 1</div>
+                                                            </div>
+                                                            <div class="column is-4">
+                                                                <div class="notification is-info">Column 2</div>
+                                                            </div>
+                                                            <div class="column is-4">
+                                                                <div class="notification is-success">Column 3</div>
+                                                            </div>
+                                                        </x-ds-grid>
+                                                    @endif
+                                                @elseif($component['id'] === 'card')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-card title="Card Example">
+                                                            <p>This is the card content. Cards are flexible containers for displaying related information in a structured format.</p>
+                                                            
+                                                            <x-slot name="footer">
+                                                                <x-ds-button size="small">Action</x-ds-button>
+                                                                <x-ds-button variant="secondary" size="small">Cancel</x-ds-button>
+                                                            </x-slot>
+                                                        </x-ds-card>
+                                                    @endif
+                                                @elseif($component['id'] === 'alert')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-alert type="info" title="Information">
+                                                            This is an informational alert message.
+                                                        </x-ds-alert>
+                                                        <x-ds-alert type="success" title="Success" class="mt-3">
+                                                            Operation completed successfully!
+                                                        </x-ds-alert>
+                                                        <x-ds-alert type="warning" title="Warning" class="mt-3">
+                                                            Please review your input before proceeding.
+                                                        </x-ds-alert>
+                                                        <x-ds-alert type="danger" title="Error" class="mt-3">
+                                                            An error occurred while processing your request.
+                                                        </x-ds-alert>
+                                                    @endif
+                                                @elseif($component['id'] === 'loading')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="field is-grouped">
+                                                            <div class="control">
+                                                                <x-ds-loading type="spinner" />
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-loading type="dots" />
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-loading type="pulse" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-4">
+                                                            <x-ds-loading type="skeleton" height="60px" />
+                                                        </div>
+                                                    @endif
                                                 @elseif($component['id'] === 'modal')
                                                     @if($exampleKey === 'basic')
                                                         <div x-data="{ showModal: false }">
@@ -147,6 +276,149 @@
                                                                 </x-slot>
                                                             </x-ds-modal>
                                                         </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'toast')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="field is-grouped">
+                                                            <div class="control">
+                                                                <x-ds-button variant="info" @click="
+                                                                    Alpine.store('notifications').add({
+                                                                        type: 'info',
+                                                                        title: 'Information',
+                                                                        message: 'This is an info toast notification.',
+                                                                        duration: 3000
+                                                                    })
+                                                                ">Show Info Toast</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="success" @click="
+                                                                    Alpine.store('notifications').add({
+                                                                        type: 'success',
+                                                                        title: 'Success!',
+                                                                        message: 'Operation completed successfully.',
+                                                                        duration: 3000
+                                                                    })
+                                                                ">Show Success Toast</x-ds-button>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-button variant="danger" @click="
+                                                                    Alpine.store('notifications').add({
+                                                                        type: 'danger',
+                                                                        title: 'Error',
+                                                                        message: 'Something went wrong.',
+                                                                        duration: 5000
+                                                                    })
+                                                                ">Show Error Toast</x-ds-button>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'tooltip')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="field is-grouped">
+                                                            <div class="control">
+                                                                <x-ds-tooltip content="This is a helpful tooltip">
+                                                                    <x-ds-button>Hover for tooltip</x-ds-button>
+                                                                </x-ds-tooltip>
+                                                            </div>
+                                                            <div class="control">
+                                                                <x-ds-tooltip content="Tooltip on the right" position="right">
+                                                                    <x-ds-button variant="info">Right tooltip</x-ds-button>
+                                                                </x-ds-tooltip>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'popover')
+                                                    @if($exampleKey === 'basic')
+                                                        <div x-data="{ showPopover: false }">
+                                                            <x-ds-button @click="showPopover = !showPopover" variant="primary">
+                                                                Toggle Popover
+                                                            </x-ds-button>
+                                                            
+                                                            <x-ds-popover x-show="showPopover" title="Popover Title">
+                                                                <p>This is a popover with rich content support.</p>
+                                                                <p>It can contain multiple paragraphs, lists, and other elements.</p>
+                                                                
+                                                                <x-slot name="footer">
+                                                                    <x-ds-button @click="showPopover = false" size="small">Close</x-ds-button>
+                                                                </x-slot>
+                                                            </x-ds-popover>
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'tabs')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-tabs :tabs="[
+                                                            ['id' => 'tab1', 'title' => 'First Tab', 'content' => '<p>Content of the first tab. This demonstrates basic tab functionality.</p>'],
+                                                            ['id' => 'tab2', 'title' => 'Second Tab', 'content' => '<p>Content of the second tab with different information.</p>'],
+                                                            ['id' => 'tab3', 'title' => 'Third Tab', 'content' => '<p>Third tab content showing the tab switching capability.</p>']
+                                                        ]" />
+                                                    @endif
+                                                @elseif($component['id'] === 'data-table')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-data-table 
+                                                            :columns="[
+                                                                ['key' => 'name', 'label' => 'Name', 'sortable' => true],
+                                                                ['key' => 'email', 'label' => 'Email', 'sortable' => true],
+                                                                ['key' => 'status', 'label' => 'Status', 'sortable' => false]
+                                                            ]"
+                                                            :data="[
+                                                                ['name' => 'John Doe', 'email' => 'john@example.com', 'status' => 'Active'],
+                                                                ['name' => 'Jane Smith', 'email' => 'jane@example.com', 'status' => 'Inactive'],
+                                                                ['name' => 'Bob Johnson', 'email' => 'bob@example.com', 'status' => 'Active']
+                                                            ]"
+                                                            :sortable="true"
+                                                            :filterable="true"
+                                                            :paginated="true" />
+                                                    @endif
+                                                @elseif($component['id'] === 'dropdown')
+                                                    @if($exampleKey === 'basic')
+                                                        <div class="columns">
+                                                            <div class="column">
+                                                                <x-ds-dropdown 
+                                                                    label="Select Option"
+                                                                    :options="[
+                                                                        ['value' => '1', 'label' => 'Option 1'],
+                                                                        ['value' => '2', 'label' => 'Option 2'],
+                                                                        ['value' => '3', 'label' => 'Option 3']
+                                                                    ]" />
+                                                            </div>
+                                                            <div class="column">
+                                                                <x-ds-dropdown 
+                                                                    label="Searchable Dropdown"
+                                                                    :searchable="true"
+                                                                    :options="[
+                                                                        ['value' => 'apple', 'label' => 'Apple'],
+                                                                        ['value' => 'banana', 'label' => 'Banana'],
+                                                                        ['value' => 'cherry', 'label' => 'Cherry'],
+                                                                        ['value' => 'date', 'label' => 'Date'],
+                                                                        ['value' => 'elderberry', 'label' => 'Elderberry']
+                                                                    ]" />
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @elseif($component['id'] === 'form-wizard')
+                                                    @if($exampleKey === 'basic')
+                                                        <x-ds-form-wizard 
+                                                            :steps="[
+                                                                ['id' => 'personal', 'title' => 'Personal Info', 'icon' => 'fas fa-user'],
+                                                                ['id' => 'account', 'title' => 'Account Details', 'icon' => 'fas fa-cog'],
+                                                                ['id' => 'review', 'title' => 'Review', 'icon' => 'fas fa-check']
+                                                            ]">
+                                                            <x-slot name="personal">
+                                                                <x-ds-input name="name" label="Full Name" required />
+                                                                <x-ds-input name="email" type="email" label="Email" required />
+                                                            </x-slot>
+                                                            
+                                                            <x-slot name="account">
+                                                                <x-ds-input name="username" label="Username" required />
+                                                                <x-ds-input name="password" type="password" label="Password" required />
+                                                            </x-slot>
+                                                            
+                                                            <x-slot name="review">
+                                                                <div class="notification is-info">
+                                                                    <p>Please review your information before submitting.</p>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-ds-form-wizard>
                                                     @endif
                                                 @else
                                                     {{-- Generic component display --}}
