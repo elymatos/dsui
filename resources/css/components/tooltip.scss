@@ -1,0 +1,486 @@
+/* DSUI Tooltip Component Styles */
+
+.ds-tooltip-trigger {
+  display: inline-block;
+  position: relative;
+  
+  // Trigger styles
+  &.ds-tooltip-trigger--hover {
+    cursor: help;
+  }
+  
+  &.ds-tooltip-trigger--click {
+    cursor: pointer;
+  }
+  
+  &.ds-tooltip-trigger--focus {
+    &:focus-within {
+      outline: 2px solid var(--ds-primary);
+      outline-offset: 2px;
+    }
+  }
+  
+  &.ds-tooltip-trigger--interactive {
+    .ds-tooltip {
+      pointer-events: auto;
+    }
+  }
+  
+  &.ds-tooltip-trigger--follow-cursor {
+    .ds-tooltip {
+      pointer-events: none;
+    }
+  }
+}
+
+.ds-tooltip-trigger-content {
+  display: inline-block;
+}
+
+// Tooltip Container
+.ds-tooltip {
+  position: absolute;
+  z-index: 9999;
+  pointer-events: none;
+  max-width: 300px;
+  word-wrap: break-word;
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-lg);
+  font-size: var(--ds-font-size-sm);
+  line-height: 1.4;
+  
+  // Theme variants
+  &.ds-tooltip--dark {
+    background-color: hsl(0, 0%, 15%);
+    color: white;
+  }
+  
+  &.ds-tooltip--light {
+    background-color: white;
+    color: hsl(0, 0%, 21%);
+    border: 1px solid hsl(0, 0%, 86%);
+  }
+  
+  &.ds-tooltip--error {
+    background-color: var(--ds-danger);
+    color: white;
+  }
+  
+  &.ds-tooltip--warning {
+    background-color: var(--ds-warning);
+    color: hsl(0, 0%, 21%);
+  }
+  
+  &.ds-tooltip--success {
+    background-color: var(--ds-success);
+    color: white;
+  }
+  
+  &.ds-tooltip--info {
+    background-color: var(--ds-info);
+    color: white;
+  }
+  
+  // Interactive tooltips
+  &.ds-tooltip--interactive {
+    pointer-events: auto;
+    cursor: default;
+    
+    &:hover {
+      .ds-tooltip-content {
+        user-select: text;
+      }
+    }
+  }
+  
+  // Follow cursor
+  &.ds-tooltip--follow-cursor {
+    pointer-events: none;
+  }
+  
+  // With arrow
+  &.ds-tooltip--with-arrow {
+    .ds-tooltip-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+    
+    // Arrow positioning based on tooltip position
+    &.ds-tooltip--top {
+      .ds-tooltip-arrow--bottom {
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 8px 8px 0 8px;
+        border-color: inherit transparent transparent transparent;
+      }
+    }
+    
+    &.ds-tooltip--bottom {
+      .ds-tooltip-arrow--top {
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent inherit transparent;
+      }
+    }
+    
+    &.ds-tooltip--left {
+      .ds-tooltip-arrow--right {
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 8px 0 8px 8px;
+        border-color: transparent transparent transparent inherit;
+      }
+    }
+    
+    &.ds-tooltip--right {
+      .ds-tooltip-arrow--left {
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 8px 8px 8px 0;
+        border-color: transparent inherit transparent transparent;
+      }
+    }
+    
+    // Start/End position adjustments
+    &.ds-tooltip--top-start,
+    &.ds-tooltip--bottom-start {
+      .ds-tooltip-arrow--bottom,
+      .ds-tooltip-arrow--top {
+        left: 16px;
+        transform: none;
+      }
+    }
+    
+    &.ds-tooltip--top-end,
+    &.ds-tooltip--bottom-end {
+      .ds-tooltip-arrow--bottom,
+      .ds-tooltip-arrow--top {
+        right: 16px;
+        left: auto;
+        transform: none;
+      }
+    }
+    
+    &.ds-tooltip--left-start,
+    &.ds-tooltip--right-start {
+      .ds-tooltip-arrow--left,
+      .ds-tooltip-arrow--right {
+        top: 16px;
+        transform: none;
+      }
+    }
+    
+    &.ds-tooltip--left-end,
+    &.ds-tooltip--right-end {
+      .ds-tooltip-arrow--left,
+      .ds-tooltip-arrow--right {
+        bottom: 16px;
+        top: auto;
+        transform: none;
+      }
+    }
+  }
+  
+  // HTML content
+  &.ds-tooltip--html {
+    .ds-tooltip-content {
+      white-space: normal;
+      
+      p {
+        margin: 0;
+        
+        &:not(:last-child) {
+          margin-bottom: var(--ds-spacing-xs);
+        }
+      }
+      
+      a {
+        color: inherit;
+        text-decoration: underline;
+        
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      
+      code {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 2px 4px;
+        border-radius: 2px;
+        font-family: monospace;
+        font-size: 0.9em;
+      }
+      
+      strong, b {
+        font-weight: 600;
+      }
+      
+      em, i {
+        font-style: italic;
+      }
+    }
+  }
+}
+
+// Tooltip Arrow
+.ds-tooltip-arrow {
+  position: absolute;
+  
+  // Theme-specific arrow colors
+  .ds-tooltip--dark & {
+    border-color: hsl(0, 0%, 15%);
+  }
+  
+  .ds-tooltip--light & {
+    border-color: white;
+  }
+  
+  .ds-tooltip--error & {
+    border-color: var(--ds-danger);
+  }
+  
+  .ds-tooltip--warning & {
+    border-color: var(--ds-warning);
+  }
+  
+  .ds-tooltip--success & {
+    border-color: var(--ds-success);
+  }
+  
+  .ds-tooltip--info & {
+    border-color: var(--ds-info);
+  }
+}
+
+// Tooltip Content
+.ds-tooltip-content {
+  padding: var(--ds-spacing-sm) var(--ds-spacing-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  .ds-tooltip--html & {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+  }
+  
+  .ds-tooltip--interactive & {
+    user-select: text;
+  }
+}
+
+// Animation Classes
+.ds-tooltip-fade-enter {
+  opacity: 0;
+}
+
+.ds-tooltip-fade-enter-active {
+  transition: opacity 0.2s ease-out;
+}
+
+.ds-tooltip-fade-enter-to {
+  opacity: 1;
+}
+
+.ds-tooltip-fade-leave {
+  opacity: 1;
+}
+
+.ds-tooltip-fade-leave-active {
+  transition: opacity 0.15s ease-in;
+}
+
+.ds-tooltip-fade-leave-to {
+  opacity: 0;
+}
+
+.ds-tooltip-scale-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.ds-tooltip-scale-enter-active {
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.ds-tooltip-scale-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ds-tooltip-scale-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ds-tooltip-scale-leave-active {
+  transition: opacity 0.15s ease-in, transform 0.15s ease-in;
+}
+
+.ds-tooltip-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.ds-tooltip-shift-enter {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.ds-tooltip-shift-enter-active {
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.ds-tooltip-shift-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ds-tooltip-shift-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ds-tooltip-shift-leave-active {
+  transition: opacity 0.15s ease-in, transform 0.15s ease-in;
+}
+
+.ds-tooltip-shift-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .ds-tooltip {
+    max-width: calc(100vw - 32px);
+    font-size: var(--ds-font-size-xs);
+  }
+  
+  .ds-tooltip-content {
+    padding: var(--ds-spacing-xs) var(--ds-spacing-sm);
+  }
+  
+  // Simplify arrows on mobile
+  .ds-tooltip--with-arrow {
+    .ds-tooltip-arrow {
+      display: none;
+    }
+  }
+  
+  // Force tooltips to appear above content on mobile
+  .ds-tooltip-trigger--hover {
+    .ds-tooltip {
+      position: fixed;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      max-width: 90vw;
+      text-align: center;
+    }
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .ds-tooltip {
+    border: 2px solid currentColor;
+    
+    &.ds-tooltip--light {
+      border-color: hsl(0, 0%, 21%);
+    }
+  }
+  
+  .ds-tooltip-arrow {
+    border-width: 10px !important;
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .ds-tooltip-fade-enter-active,
+  .ds-tooltip-fade-leave-active,
+  .ds-tooltip-scale-enter-active,
+  .ds-tooltip-scale-leave-active,
+  .ds-tooltip-shift-enter-active,
+  .ds-tooltip-shift-leave-active {
+    transition: none !important;
+  }
+  
+  .ds-tooltip-scale-enter,
+  .ds-tooltip-scale-leave-to {
+    transform: none !important;
+  }
+  
+  .ds-tooltip-shift-enter,
+  .ds-tooltip-shift-leave-to {
+    transform: none !important;
+  }
+}
+
+// Print Styles
+@media print {
+  .ds-tooltip {
+    display: none !important;
+  }
+  
+  .ds-tooltip-trigger-content {
+    &::after {
+      content: " (" attr(title) ")";
+      font-size: 0.8em;
+      color: hsl(0, 0%, 48%);
+    }
+  }
+}
+
+// Dark Mode Support
+@media (prefers-color-scheme: dark) {
+  .ds-tooltip--light {
+    background-color: hsl(0, 0%, 15%);
+    color: hsl(0, 0%, 90%);
+    border-color: hsl(0, 0%, 30%);
+  }
+  
+  .ds-tooltip--dark {
+    background-color: hsl(0, 0%, 90%);
+    color: hsl(0, 0%, 15%);
+  }
+}
+
+// Focus Visible Support
+.ds-tooltip-trigger:focus-visible {
+  outline: 2px solid var(--ds-primary);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-sm);
+}
+
+// Accessibility Improvements
+.ds-tooltip[role="tooltip"] {
+  // Ensure tooltip is announced by screen readers
+  speak: normal;
+}
+
+// Performance Optimizations
+.ds-tooltip {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+// Z-index Management
+.ds-tooltip {
+  z-index: 9999;
+  
+  // Ensure tooltips appear above modals but below other overlays if needed
+  .ds-modal.is-active ~ * &,
+  .ds-modal.is-active ~ & {
+    z-index: 10000;
+  }
+}

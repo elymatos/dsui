@@ -54,6 +54,8 @@ class DesignSystemServiceProvider extends ServiceProvider
         Blade::component('ds-loading', \App\View\Components\DS\Feedback\Loading::class);
         Blade::component('ds-modal', \App\View\Components\DS\Feedback\Modal::class);
         Blade::component('ds-toast', \App\View\Components\DS\Feedback\Toast::class);
+        Blade::component('ds-tooltip', \App\View\Components\DS\Feedback\Tooltip::class);
+        Blade::component('ds-popover', \App\View\Components\DS\Feedback\Popover::class);
         
         // Form Components
         Blade::component('ds-form', \App\View\Components\DS\Forms\Form::class);
@@ -63,6 +65,8 @@ class DesignSystemServiceProvider extends ServiceProvider
         // Complex Components
         Blade::component('ds-data-table', \App\View\Components\DS\Complex\DataTable::class);
         Blade::component('ds-tabs', \App\View\Components\DS\Complex\Tabs::class);
+        Blade::component('ds-dropdown', \App\View\Components\DS\Complex\Dropdown::class);
+        Blade::component('ds-form-wizard', \App\View\Components\DS\Complex\FormWizard::class);
     }
 
     /**

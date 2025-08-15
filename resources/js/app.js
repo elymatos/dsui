@@ -268,6 +268,10 @@ import './components/modal.js';
 import './components/tabs.js';
 import './components/toast.js';
 import './components/data-table.js';
+import './components/dropdown.js';
+import './components/form-wizard.js';
+import './components/tooltip.js';
+import './components/popover.js';
 
 // Start Alpine
 Alpine.start();
