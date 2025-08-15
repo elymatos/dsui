@@ -1,0 +1,111 @@
+// DSUI Button Component Styles
+
+.ds-button {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--ds-transition-duration, 0.2s) ease;
+  
+  // Button content wrapper
+  &__content {
+    transition: opacity 0.2s ease;
+  }
+  
+  // Loading state
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  // Enhanced hover effects
+  &:hover:not([disabled]):not(.is-loading) {
+    transform: translateY(-1px);
+    box-shadow: var(--ds-shadow-md);
+  }
+  
+  // Active state
+  &:active:not([disabled]):not(.is-loading) {
+    transform: translateY(0);
+    box-shadow: var(--ds-shadow-sm);
+  }
+  
+  // Focus state for accessibility
+  &:focus:not([disabled]) {
+    outline: 2px solid var(--ds-primary);
+    outline-offset: 2px;
+  }
+  
+  // Loading state styles
+  &.is-loading {
+    pointer-events: none;
+    
+    .ds-button__content {
+      opacity: 0;
+    }
+  }
+  
+  // Disabled state
+  &:disabled,
+  &.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  // Variant-specific enhancements
+  &--primary {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-primary) 90%, black);
+    }
+  }
+  
+  &--secondary {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-secondary) 90%, black);
+    }
+  }
+  
+  &--success {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-success) 90%, black);
+    }
+  }
+  
+  &--warning {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-warning) 90%, black);
+    }
+  }
+  
+  &--danger {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-danger) 90%, black);
+    }
+  }
+  
+  &--info {
+    &:hover:not([disabled]):not(.is-loading) {
+      background-color: color-mix(in srgb, var(--ds-info) 90%, black);
+    }
+  }
+}
+
+// Link buttons
+a.ds-button {
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: none;
+  }
+  
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
+// Button group enhancements
+.field.is-grouped .control .ds-button:not(:last-child) {
+  margin-right: var(--ds-spacing-sm);
+}

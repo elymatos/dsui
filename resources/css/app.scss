@@ -1,0 +1,83 @@
+/* DSUI Design System Styles */
+@use 'bulma/sass' as bulma;
+
+/* DSUI Custom Design Tokens */
+:root {
+  /* Colors */
+  --ds-primary: #3273dc;
+  --ds-secondary: #363636;
+  --ds-success: #23d160;
+  --ds-warning: #ffdd57;
+  --ds-danger: #ff3860;
+  --ds-info: #209cee;
+  
+  /* Spacing */
+  --ds-spacing-xs: 0.25rem;
+  --ds-spacing-sm: 0.5rem;
+  --ds-spacing-md: 1rem;
+  --ds-spacing-lg: 1.5rem;
+  --ds-spacing-xl: 3rem;
+  
+  /* Typography */
+  --ds-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ds-font-size-xs: 0.75rem;
+  --ds-font-size-sm: 0.875rem;
+  --ds-font-size-md: 1rem;
+  --ds-font-size-lg: 1.125rem;
+  --ds-font-size-xl: 1.25rem;
+  
+  /* Border Radius */
+  --ds-radius-sm: 0.125rem;
+  --ds-radius-md: 0.25rem;
+  --ds-radius-lg: 0.5rem;
+  --ds-radius-xl: 1rem;
+  
+  /* Shadows */
+  --ds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ds-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --ds-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Component Base Classes */
+.ds-component {
+  font-family: var(--ds-font-family);
+}
+
+/* Custom Bulma Overrides */
+.button.ds-button {
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--ds-shadow-md);
+  }
+}
+
+/* DSUI Component Styles */
+.ds-button--primary {
+  background-color: var(--ds-primary);
+}
+
+.ds-button--secondary {
+  background-color: var(--ds-secondary);
+}
+
+.ds-button--success {
+  background-color: var(--ds-success);
+}
+
+.ds-button--warning {
+  background-color: var(--ds-warning);
+}
+
+.ds-button--danger {
+  background-color: var(--ds-danger);
+}
+
+.ds-button--info {
+  background-color: var(--ds-info);
+}
+
+/* Import component-specific styles */
+@use 'components/button.scss';
