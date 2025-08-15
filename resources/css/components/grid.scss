@@ -1,0 +1,99 @@
+/**
+ * DSUI Grid Component Styles
+ * Enhanced Bulma columns with CSS Grid support and responsive behavior
+ */
+
+.ds-grid {
+  // Enhanced Bulma columns
+  &.columns {
+    margin-left: calc(-1 * var(--ds-grid-gap, 1.5rem));
+    margin-right: calc(-1 * var(--ds-grid-gap, 1.5rem));
+    margin-top: calc(-1 * var(--ds-grid-gap, 1.5rem));
+    
+    &:last-child {
+      margin-bottom: calc(-1 * var(--ds-grid-gap, 1.5rem));
+    }
+    
+    .column {
+      padding: var(--ds-grid-gap, 1.5rem);
+    }
+  }
+  
+  // CSS Grid mode
+  &.ds-grid--auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--ds-grid-min-column-width, 250px), 1fr));
+    gap: var(--ds-grid-gap, 1.5rem);
+    
+    .column {
+      padding: 0;
+    }
+  }
+  
+  // Gap variations
+  &.ds-grid--gap-none {
+    --ds-grid-gap: 0;
+  }
+  
+  &.ds-grid--gap-small {
+    --ds-grid-gap: 0.75rem;
+  }
+  
+  &.ds-grid--gap-medium {
+    --ds-grid-gap: 2rem;
+  }
+  
+  &.ds-grid--gap-large {
+    --ds-grid-gap: 3rem;
+  }
+  
+  // Column direction
+  &.ds-grid--column {
+    flex-direction: column;
+  }
+  
+  // Responsive behavior
+  &.ds-grid--responsive {
+    @media screen and (max-width: 768px) {
+      .column {
+        flex: none;
+        width: 100%;
+      }
+    }
+  }
+  
+  // Template layouts
+  &.ds-grid--template-sidebar {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--ds-grid-gap, 1.5rem);
+    
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &.ds-grid--template-two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ds-grid-gap, 1.5rem);
+    
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &.ds-grid--template-three-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--ds-grid-gap, 1.5rem);
+    
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

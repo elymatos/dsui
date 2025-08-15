@@ -1,0 +1,15 @@
+/**
+ * DSUI Alert Component Styles
+ */
+
+.ds-alert {
+  &.ds-alert--dismissible {
+    position: relative;
+    padding-right: 2.5rem;
+  }
+  
+  .ds-alert-title {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}

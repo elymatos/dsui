@@ -42,12 +42,16 @@ class DesignSystemServiceProvider extends ServiceProvider
         // Typography Components
         Blade::component('ds-heading', \App\View\Components\DS\Typography\Heading::class);
         Blade::component('ds-text', \App\View\Components\DS\Typography\Text::class);
+        Blade::component('ds-link', \App\View\Components\DS\Typography\Link::class);
         
         // Layout Components
         Blade::component('ds-container', \App\View\Components\DS\Layout\Container::class);
         Blade::component('ds-grid', \App\View\Components\DS\Layout\Grid::class);
         Blade::component('ds-card', \App\View\Components\DS\Layout\Card::class);
-        Blade::component('ds-navbar', \App\View\Components\DS\Layout\Navbar::class);
+        
+        // Feedback Components
+        Blade::component('ds-alert', \App\View\Components\DS\Feedback\Alert::class);
+        Blade::component('ds-loading', \App\View\Components\DS\Feedback\Loading::class);
         
         // Form Components
         Blade::component('ds-form', \App\View\Components\DS\Forms\Form::class);
