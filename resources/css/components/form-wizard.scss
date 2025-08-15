@@ -1,0 +1,709 @@
+/* DSUI Form Wizard Component Styles */
+
+.ds-form-wizard {
+  background: white;
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-md);
+  overflow: hidden;
+  
+  // Vertical orientation
+  &.ds-form-wizard--vertical {
+    display: flex;
+    
+    .ds-wizard-progress {
+      width: 250px;
+      border-right: 1px solid hsl(0, 0%, 86%);
+      background-color: hsl(0, 0%, 98%);
+    }
+    
+    .ds-wizard-form {
+      flex: 1;
+    }
+    
+    .ds-wizard-steps {
+      flex-direction: column;
+      padding: var(--ds-spacing-md);
+    }
+    
+    .ds-wizard-step {
+      margin-bottom: var(--ds-spacing-md);
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .ds-wizard-step-connector {
+      position: absolute;
+      top: 50px;
+      left: 24px;
+      width: 2px;
+      height: calc(100% + var(--ds-spacing-md));
+      background: hsl(0, 0%, 86%);
+    }
+    
+    .ds-wizard-progress-bar {
+      display: none;
+    }
+  }
+  
+  // Animation
+  &.ds-form-wizard--animated {
+    .ds-wizard-panel {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+  }
+  
+  // Navigable steps
+  &.ds-form-wizard--navigable {
+    .ds-wizard-step--clickable {
+      cursor: pointer;
+      
+      &:hover {
+        .ds-wizard-step-marker {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// Progress Indicator
+.ds-wizard-progress {
+  background-color: hsl(0, 0%, 98%);
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+  padding: var(--ds-spacing-lg) var(--ds-spacing-md) var(--ds-spacing-md);
+}
+
+// Step Indicators
+.ds-wizard-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--ds-spacing-md);
+  position: relative;
+}
+
+.ds-wizard-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  
+  &.ds-wizard-step--current {
+    .ds-wizard-step-marker {
+      background-color: var(--ds-primary);
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .ds-wizard-step-title {
+      color: var(--ds-primary);
+      font-weight: 600;
+    }
+  }
+  
+  &.ds-wizard-step--completed {
+    .ds-wizard-step-marker {
+      background-color: var(--ds-success);
+      color: white;
+    }
+    
+    .ds-wizard-step-title {
+      color: var(--ds-success);
+    }
+    
+    .ds-wizard-step-connector {
+      background-color: var(--ds-success);
+    }
+  }
+  
+  &.ds-wizard-step--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .ds-wizard-step-marker {
+      background-color: hsl(0, 0%, 86%);
+      color: hsl(0, 0%, 71%);
+    }
+  }
+  
+  &.ds-wizard-step--invalid {
+    .ds-wizard-step-marker {
+      background-color: var(--ds-danger);
+      color: white;
+    }
+    
+    .ds-wizard-step-title {
+      color: var(--ds-danger);
+    }
+  }
+  
+  &.ds-wizard-step--optional {
+    .ds-wizard-step-optional {
+      color: hsl(0, 0%, 48%);
+      font-size: var(--ds-font-size-xs);
+      margin-top: 2px;
+    }
+  }
+  
+  &.ds-wizard-step--clickable {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover:not(.ds-wizard-step--disabled) {
+      .ds-wizard-step-marker {
+        transform: scale(1.05);
+      }
+    }
+    
+    &:focus {
+      outline: 2px solid var(--ds-primary);
+      outline-offset: 4px;
+      border-radius: var(--ds-radius-sm);
+    }
+  }
+}
+
+// Step Marker
+.ds-wizard-step-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 86%);
+  color: hsl(0, 0%, 48%);
+  font-weight: 600;
+  margin-bottom: var(--ds-spacing-sm);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.ds-wizard-step-check,
+.ds-wizard-step-error,
+.ds-wizard-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
+.ds-wizard-step-number {
+  font-size: var(--ds-font-size-lg);
+}
+
+// Step Info
+.ds-wizard-step-info {
+  max-width: 120px;
+}
+
+.ds-wizard-step-title {
+  font-size: var(--ds-font-size-sm);
+  font-weight: 500;
+  color: hsl(0, 0%, 29%);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.ds-wizard-step-description {
+  font-size: var(--ds-font-size-xs);
+  color: hsl(0, 0%, 48%);
+  line-height: 1.3;
+}
+
+// Step Connector
+.ds-wizard-step-connector {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background-color: hsl(0, 0%, 86%);
+  z-index: 1;
+  
+  .ds-wizard-step:last-child & {
+    display: none;
+  }
+}
+
+// Progress Bar
+.ds-wizard-progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: hsl(0, 0%, 86%);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ds-wizard-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ds-primary), hsl(229, 53%, 63%));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+// Form Content
+.ds-wizard-form {
+  position: relative;
+}
+
+.ds-wizard-content {
+  min-height: 400px;
+  padding: var(--ds-spacing-xl);
+}
+
+// Step Panel
+.ds-wizard-panel {
+  width: 100%;
+}
+
+.ds-wizard-panel-header {
+  margin-bottom: var(--ds-spacing-lg);
+  text-align: center;
+}
+
+.ds-wizard-panel-title {
+  font-size: var(--ds-font-size-xl);
+  font-weight: 600;
+  color: hsl(0, 0%, 21%);
+  margin-bottom: var(--ds-spacing-sm);
+}
+
+.ds-wizard-panel-description {
+  font-size: var(--ds-font-size-md);
+  color: hsl(0, 0%, 48%);
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ds-wizard-panel-body {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Form Fields
+.ds-wizard-fields {
+  display: grid;
+  gap: var(--ds-spacing-lg);
+}
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-xs);
+}
+
+.ds-label {
+  font-size: var(--ds-font-size-sm);
+  font-weight: 500;
+  color: hsl(0, 0%, 29%);
+  
+  &.ds-label--required::after {
+    content: ' *';
+    color: var(--ds-danger);
+  }
+}
+
+.ds-input,
+.ds-textarea,
+.ds-select {
+  width: 100%;
+  padding: var(--ds-spacing-sm) var(--ds-spacing-md);
+  border: 1px solid hsl(0, 0%, 86%);
+  border-radius: var(--ds-radius-md);
+  font-size: var(--ds-font-size-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 2px rgba(50, 115, 220, 0.2);
+  }
+  
+  &:invalid {
+    border-color: var(--ds-danger);
+  }
+  
+  &:disabled {
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 71%);
+    cursor: not-allowed;
+  }
+}
+
+.ds-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+// Checkbox and Radio
+.ds-checkbox-label,
+.ds-radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-xs);
+  cursor: pointer;
+  font-size: var(--ds-font-size-sm);
+  
+  &:hover {
+    color: var(--ds-primary);
+  }
+}
+
+.ds-checkbox,
+.ds-radio {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ds-primary);
+}
+
+.ds-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-sm);
+}
+
+// Field Help and Error
+.ds-field-help {
+  font-size: var(--ds-font-size-xs);
+  color: hsl(0, 0%, 48%);
+  line-height: 1.4;
+}
+
+.ds-field-error {
+  font-size: var(--ds-font-size-xs);
+  color: var(--ds-danger);
+  line-height: 1.4;
+}
+
+// Custom Content
+.ds-wizard-custom-content {
+  min-height: 200px;
+}
+
+// Summary
+.ds-wizard-summary {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ds-wizard-summary-header {
+  text-align: center;
+  margin-bottom: var(--ds-spacing-xl);
+}
+
+.ds-wizard-summary-title {
+  font-size: var(--ds-font-size-xl);
+  font-weight: 600;
+  color: hsl(0, 0%, 21%);
+  margin-bottom: var(--ds-spacing-sm);
+}
+
+.ds-wizard-summary-description {
+  font-size: var(--ds-font-size-md);
+  color: hsl(0, 0%, 48%);
+  line-height: 1.5;
+}
+
+.ds-wizard-summary-content {
+  display: grid;
+  gap: var(--ds-spacing-lg);
+}
+
+.ds-wizard-summary-step {
+  background: hsl(0, 0%, 98%);
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-spacing-lg);
+  position: relative;
+}
+
+.ds-wizard-summary-step-title {
+  font-size: var(--ds-font-size-lg);
+  font-weight: 600;
+  color: hsl(0, 0%, 21%);
+  margin-bottom: var(--ds-spacing-md);
+}
+
+.ds-wizard-summary-fields {
+  display: grid;
+  gap: var(--ds-spacing-sm);
+  margin-bottom: var(--ds-spacing-md);
+}
+
+.ds-wizard-summary-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ds-spacing-xs) 0;
+  border-bottom: 1px solid hsl(0, 0%, 93%);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ds-wizard-summary-label {
+  font-weight: 500;
+  color: hsl(0, 0%, 29%);
+  flex: 1;
+}
+
+.ds-wizard-summary-value {
+  color: hsl(0, 0%, 21%);
+  text-align: right;
+  max-width: 300px;
+  word-break: break-word;
+}
+
+.ds-wizard-summary-edit {
+  position: absolute;
+  top: var(--ds-spacing-md);
+  right: var(--ds-spacing-md);
+  padding: var(--ds-spacing-xs) var(--ds-spacing-sm);
+  border: 1px solid var(--ds-primary);
+  background: white;
+  color: var(--ds-primary);
+  border-radius: var(--ds-radius-sm);
+  font-size: var(--ds-font-size-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--ds-primary);
+    color: white;
+  }
+}
+
+// Navigation
+.ds-wizard-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ds-spacing-lg) var(--ds-spacing-xl);
+  border-top: 1px solid hsl(0, 0%, 86%);
+  background: hsl(0, 0%, 98%);
+  gap: var(--ds-spacing-md);
+}
+
+// Success State
+.ds-wizard-success {
+  text-align: center;
+  padding: var(--ds-spacing-xl);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-wizard-success-icon {
+  font-size: 4rem;
+  margin-bottom: var(--ds-spacing-lg);
+}
+
+.ds-wizard-success-title {
+  font-size: var(--ds-font-size-xl);
+  font-weight: 600;
+  color: var(--ds-success);
+  margin-bottom: var(--ds-spacing-md);
+}
+
+.ds-wizard-success-message {
+  font-size: var(--ds-font-size-md);
+  color: hsl(0, 0%, 48%);
+  line-height: 1.5;
+}
+
+// Panel Animations
+.ds-wizard-panel-enter {
+  transition: all 0.3s ease-out;
+}
+
+.ds-wizard-panel-enter-start {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.ds-wizard-panel-enter-end {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ds-wizard-panel-leave {
+  transition: all 0.3s ease-in;
+}
+
+.ds-wizard-panel-leave-start {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ds-wizard-panel-leave-end {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .ds-form-wizard--vertical {
+    flex-direction: column;
+    
+    .ds-wizard-progress {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid hsl(0, 0%, 86%);
+    }
+    
+    .ds-wizard-steps {
+      flex-direction: row;
+      padding: var(--ds-spacing-md);
+    }
+    
+    .ds-wizard-step {
+      margin-bottom: 0;
+    }
+    
+    .ds-wizard-step-connector {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      right: -50%;
+      width: calc(100% + 100px);
+      height: 2px;
+    }
+  }
+  
+  .ds-wizard-steps {
+    gap: var(--ds-spacing-xs);
+  }
+  
+  .ds-wizard-step-marker {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .ds-wizard-step-info {
+    max-width: 100px;
+  }
+  
+  .ds-wizard-step-title {
+    font-size: var(--ds-font-size-xs);
+  }
+  
+  .ds-wizard-step-description {
+    display: none;
+  }
+  
+  .ds-wizard-content {
+    padding: var(--ds-spacing-lg);
+    min-height: 300px;
+  }
+  
+  .ds-wizard-panel-title {
+    font-size: var(--ds-font-size-lg);
+  }
+  
+  .ds-wizard-navigation {
+    flex-direction: column;
+    gap: var(--ds-spacing-sm);
+    
+    .ds-button {
+      width: 100%;
+    }
+  }
+  
+  .ds-wizard-summary-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ds-spacing-xs);
+  }
+  
+  .ds-wizard-summary-value {
+    text-align: left;
+    max-width: none;
+  }
+  
+  .ds-wizard-summary-edit {
+    position: static;
+    align-self: flex-end;
+    margin-top: var(--ds-spacing-sm);
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .ds-wizard-step-marker {
+    border: 2px solid currentColor;
+  }
+  
+  .ds-wizard-step--current .ds-wizard-step-marker {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+  
+  .ds-wizard-step--completed .ds-wizard-step-marker {
+    background-color: var(--ds-success);
+    border-color: var(--ds-success);
+  }
+  
+  .ds-input,
+  .ds-textarea,
+  .ds-select {
+    border: 2px solid currentColor;
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .ds-wizard-step-marker,
+  .ds-wizard-progress-fill,
+  .ds-wizard-summary-edit {
+    transition: none;
+  }
+  
+  .ds-wizard-panel-enter,
+  .ds-wizard-panel-leave {
+    transition: none;
+  }
+  
+  .ds-form-wizard--animated .ds-wizard-panel {
+    transition: none;
+  }
+  
+  .ds-wizard-step--clickable:hover .ds-wizard-step-marker {
+    transform: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .ds-wizard-progress,
+  .ds-wizard-navigation {
+    display: none;
+  }
+  
+  .ds-wizard-panel {
+    display: block !important;
+    page-break-after: always;
+  }
+  
+  .ds-wizard-panel:last-child {
+    page-break-after: auto;
+  }
+  
+  .ds-form-wizard {
+    box-shadow: none;
+    border: 1px solid black;
+  }
+}

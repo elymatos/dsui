@@ -16,12 +16,14 @@
                     <h2 class="subtitle">Laravel + Bulma + AlpineJS + HTMX Component Library</h2>
                     
                     <div class="buttons">
-                        <x-ds-button variant="light" href="/design-system/component/button">
-                            View Components
+                        <x-ds-button variant="light" href="/design-system/showcase">
+                            <span class="icon">
+                                <i class="fas fa-palette"></i>
+                            </span>
+                            <span>Interactive Showcase</span>
                         </x-ds-button>
-                        <x-ds-button variant="primary" outlined="true" 
-                                   :alpine-data="['onClick' => 'showGettingStarted']">
-                            Getting Started
+                        <x-ds-button variant="primary" outlined="true" href="/design-system/component/button">
+                            View Components
                         </x-ds-button>
                     </div>
                 </div>

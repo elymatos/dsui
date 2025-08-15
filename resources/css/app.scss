@@ -20,6 +20,10 @@
 @use 'components/tabs.scss';
 @use 'components/toast.scss';
 @use 'components/data-table.scss';
+@use 'components/dropdown.scss';
+@use 'components/form-wizard.scss';
+@use 'components/tooltip.scss';
+@use 'components/popover.scss';
 
 /* DSUI Custom Design Tokens */
 :root {
