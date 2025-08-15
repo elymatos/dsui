@@ -6,8 +6,48 @@
     <title>{{ $title }}</title>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Force light mode override */
+        body.force-light-mode {
+            background-color: white !important;
+            color: #363636 !important;
+        }
+        
+        body.force-light-mode .notification {
+            background-color: #f5f5f5 !important;
+            color: #363636 !important;
+        }
+        
+        body.force-light-mode .card {
+            background-color: white !important;
+            color: #363636 !important;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 0.5rem;
+            background: #3273dc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .theme-toggle:hover {
+            background: #2366d1;
+        }
+    </style>
 </head>
-<body>
+<body class="force-light-mode">
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-sun" id="theme-icon"></i>
+    </button>
+    
     <div class="container is-fluid">
         <!-- Breadcrumb -->
         <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
@@ -550,6 +590,37 @@
                     });
                 }
             }));
+        });
+        
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (body.classList.contains('force-light-mode')) {
+                body.classList.remove('force-light-mode');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.add('force-light-mode');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                body.classList.remove('force-light-mode');
+                icon.className = 'fas fa-moon';
+            } else {
+                body.classList.add('force-light-mode');
+                icon.className = 'fas fa-sun';
+            }
         });
     </script>
 </body>
