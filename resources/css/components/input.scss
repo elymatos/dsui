@@ -1,0 +1,204 @@
+// DSUI Input Component Styles
+
+.ds-input {
+  transition: all var(--ds-transition-duration, 0.2s) ease;
+  
+  // Enhanced focus state
+  &:focus,
+  &.is-focused {
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 0.125em rgba(var(--ds-primary-rgb, 50, 115, 220), 0.25);
+    transform: none; // Override any transform from base
+  }
+  
+  // Success state
+  &.is-success {
+    border-color: var(--ds-success);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-success-rgb, 35, 209, 96), 0.25);
+    }
+  }
+  
+  // Error state
+  &.is-danger {
+    border-color: var(--ds-danger);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-danger-rgb, 255, 56, 96), 0.25);
+    }
+  }
+  
+  // Warning state
+  &.is-warning {
+    border-color: var(--ds-warning);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-warning-rgb, 255, 221, 87), 0.25);
+    }
+  }
+  
+  // Disabled state
+  &:disabled,
+  &[readonly] {
+    background-color: color-mix(in srgb, currentColor 5%, transparent);
+    cursor: not-allowed;
+  }
+  
+  // Loading state
+  &.is-loading {
+    padding-right: 2.5em;
+    
+    &:focus {
+      border-color: var(--ds-primary);
+    }
+  }
+  
+  // Hover state
+  &:hover:not(:focus):not([disabled]):not([readonly]) {
+    border-color: color-mix(in srgb, currentColor 20%, transparent);
+  }
+}
+
+// Field enhancements
+.field {
+  &.has-icons-left .ds-input {
+    padding-left: 2.5em;
+  }
+  
+  &.has-icons-right .ds-input {
+    padding-right: 2.5em;
+  }
+  
+  &.has-icons-left.has-icons-right .ds-input {
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+  }
+}
+
+// Control enhancements
+.control {
+  position: relative;
+  
+  // Loading spinner for input
+  .ds-input__loader {
+    position: absolute;
+    top: 50%;
+    right: 0.75em;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  // Enhanced icon positioning
+  .icon {
+    &.is-left {
+      left: 0;
+      pointer-events: none;
+    }
+    
+    &.is-right {
+      right: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+// Label enhancements
+.label {
+  font-weight: 600;
+  color: var(--ds-secondary);
+  margin-bottom: var(--ds-spacing-xs);
+  
+  // Required indicator
+  .has-text-danger {
+    margin-left: 0.25em;
+  }
+}
+
+// Help text enhancements
+.help {
+  font-size: 0.875em;
+  margin-top: var(--ds-spacing-xs);
+  
+  &.is-danger {
+    font-weight: 500;
+  }
+}
+
+// Input size variants
+.ds-input {
+  &.is-small {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+    
+    ~ .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      
+      &.is-left {
+        left: 0;
+      }
+      
+      &.is-right {
+        right: 0;
+      }
+    }
+  }
+  
+  &.is-medium {
+    font-size: 1.125rem;
+    padding: 0.75rem 1rem;
+    
+    ~ .icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+  
+  &.is-large {
+    font-size: 1.25rem;
+    padding: 1rem 1.25rem;
+    
+    ~ .icon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+
+// Character counter (when implemented)
+.ds-input-counter {
+  font-size: 0.75rem;
+  color: var(--ds-secondary);
+  text-align: right;
+  margin-top: var(--ds-spacing-xs);
+  
+  &.is-danger {
+    color: var(--ds-danger);
+  }
+}
+
+// Input group styling (for addons)
+.field.has-addons {
+  .ds-input {
+    &:not(:first-child) {
+      border-left: none;
+      border-radius: 0;
+    }
+    
+    &:not(:last-child) {
+      border-right: none;
+      border-radius: 0;
+    }
+    
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

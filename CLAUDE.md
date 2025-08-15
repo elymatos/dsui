@@ -91,8 +91,8 @@ Building a comprehensive Laravel + Bulma + AlpineJS + HTMX design system with th
 
 ### Base Components
 - [x] Button (all variants and states) - **COMPLETE**
-- [ ] Input (text, email, password, number)
-- [ ] Textarea (with auto-resize)
+- [x] Input (text, email, password, number) - **COMPLETE**
+- [x] Textarea (with auto-resize) - **COMPLETE**
 - [ ] Select (single/multi with search)
 - [ ] Checkbox/Radio (custom styling)
 - [ ] File Upload (drag-and-drop)

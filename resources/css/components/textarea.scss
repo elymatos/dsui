@@ -1,0 +1,171 @@
+// DSUI Textarea Component Styles
+
+.ds-textarea {
+  transition: all var(--ds-transition-duration, 0.2s) ease;
+  resize: vertical; // Allow vertical resize by default
+  
+  // Auto-resize variant
+  &--auto-resize {
+    resize: none;
+    overflow: hidden;
+  }
+  
+  // Enhanced focus state
+  &:focus,
+  &.is-focused {
+    border-color: var(--ds-primary);
+    box-shadow: 0 0 0 0.125em rgba(var(--ds-primary-rgb, 50, 115, 220), 0.25);
+  }
+  
+  // Success state
+  &.is-success {
+    border-color: var(--ds-success);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-success-rgb, 35, 209, 96), 0.25);
+    }
+  }
+  
+  // Error state
+  &.is-danger {
+    border-color: var(--ds-danger);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-danger-rgb, 255, 56, 96), 0.25);
+    }
+  }
+  
+  // Warning state
+  &.is-warning {
+    border-color: var(--ds-warning);
+    
+    &:focus {
+      box-shadow: 0 0 0 0.125em rgba(var(--ds-warning-rgb, 255, 221, 87), 0.25);
+    }
+  }
+  
+  // Disabled state
+  &:disabled,
+  &[readonly] {
+    background-color: color-mix(in srgb, currentColor 5%, transparent);
+    cursor: not-allowed;
+    resize: none;
+  }
+  
+  // Loading state
+  &.is-loading {
+    &:focus {
+      border-color: var(--ds-primary);
+    }
+  }
+  
+  // Hover state
+  &:hover:not(:focus):not([disabled]):not([readonly]) {
+    border-color: color-mix(in srgb, currentColor 20%, transparent);
+  }
+}
+
+// Textarea footer (counter + help text)
+.ds-textarea__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: var(--ds-spacing-xs);
+  gap: var(--ds-spacing-sm);
+}
+
+// Character counter
+.ds-textarea__counter {
+  font-size: 0.75rem;
+  color: var(--ds-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  
+  &.is-warning {
+    color: var(--ds-warning);
+    font-weight: 500;
+  }
+  
+  &.is-danger {
+    color: var(--ds-danger);
+    font-weight: 600;
+  }
+}
+
+// Control enhancements
+.control {
+  position: relative;
+  
+  // Loading spinner for textarea
+  .ds-textarea__loader {
+    position: absolute;
+    top: 0.75em;
+    right: 0.75em;
+    pointer-events: none;
+  }
+}
+
+// Help text adjustments when used with counter
+.ds-textarea__footer .help {
+  margin: 0;
+  flex: 1;
+}
+
+// Textarea size variants
+.ds-textarea {
+  &.is-small {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  &.is-medium {
+    font-size: 1.125rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  &.is-large {
+    font-size: 1.25rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+// Code/monospace textarea variant
+.ds-textarea--code {
+  font-family: var(--ds-font-mono, 'Monaco', 'Menlo', 'Ubuntu Mono', monospace);
+  line-height: 1.4;
+  tab-size: 2;
+  
+  &::placeholder {
+    font-family: inherit;
+  }
+}
+
+// Minimal textarea variant (borderless)
+.ds-textarea--minimal {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  
+  &:focus {
+    box-shadow: none;
+    outline: 2px solid var(--ds-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Rich editor preparation (for future WYSIWYG integration)
+.ds-textarea--rich {
+  min-height: 200px;
+  
+  &.is-loading {
+    background-image: linear-gradient(45deg, transparent 25%, rgba(255,255,255,.2) 25%, rgba(255,255,255,.2) 50%, transparent 50%, transparent 75%, rgba(255,255,255,.2) 75%, rgba(255,255,255,.2));
+    background-size: 1rem 1rem;
+    animation: ds-loading-stripes 1s linear infinite;
+  }
+}
+
+@keyframes ds-loading-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 1rem 1rem; }
+}
