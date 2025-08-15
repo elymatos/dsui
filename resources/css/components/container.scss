@@ -1,0 +1,367 @@
+/**
+ * DSUI Container Component Styles
+ * Enhanced Bulma container with responsive breakpoints and flexible layout options
+ */
+
+.ds-container {
+  position: relative;
+  
+  // Enhance Bulma's container classes
+  &.container {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    
+    // Responsive breakpoints following Bulma's system
+    @media screen and (min-width: 1024px) {
+      max-width: 960px;
+    }
+    
+    @media screen and (min-width: 1216px) {
+      max-width: 1152px;
+    }
+    
+    @media screen and (min-width: 1408px) {
+      max-width: 1344px;
+    }
+    
+    // Enhanced breakpoint options
+    &.is-widescreen {
+      @media screen and (min-width: 1216px) {
+        max-width: 1152px;
+      }
+      
+      @media screen and (min-width: 1408px) {
+        max-width: 1344px;
+      }
+    }
+    
+    &.is-fullhd {
+      @media screen and (min-width: 1408px) {
+        max-width: 1344px;
+      }
+    }
+    
+    &.is-max-desktop {
+      @media screen and (min-width: 1024px) {
+        max-width: 960px;
+      }
+    }
+    
+    &.is-max-widescreen {
+      @media screen and (min-width: 1216px) {
+        max-width: 1152px;
+      }
+    }
+  }
+  
+  // Fluid container
+  &.container-fluid {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: none;
+  }
+  
+  // Padding variations
+  &.ds-container--padding-small {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  &.ds-container--padding-normal {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  &.ds-container--padding-medium {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  &.ds-container--padding-large {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  // Margin variations
+  &.ds-container--margin-small {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  &.ds-container--margin-normal {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  &.ds-container--margin-medium {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  &.ds-container--margin-large {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  &.ds-container--margin-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  // No centering option
+  &.ds-container--no-center {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  // Breakpoint-specific classes
+  &.ds-container--mobile {
+    --ds-current-breakpoint: 'mobile';
+  }
+  
+  &.ds-container--tablet {
+    --ds-current-breakpoint: 'tablet';
+  }
+  
+  &.ds-container--desktop {
+    --ds-current-breakpoint: 'desktop';
+  }
+  
+  &.ds-container--widescreen {
+    --ds-current-breakpoint: 'widescreen';
+  }
+  
+  &.ds-container--fullhd {
+    --ds-current-breakpoint: 'fullhd';
+  }
+  
+  // Breakpoint-based visibility
+  &.ds-container--from-tablet {
+    display: none;
+    
+    @media screen and (min-width: 769px) {
+      display: block;
+    }
+  }
+  
+  &.ds-container--from-desktop {
+    display: none;
+    
+    @media screen and (min-width: 1024px) {
+      display: block;
+    }
+  }
+  
+  &.ds-container--from-widescreen {
+    display: none;
+    
+    @media screen and (min-width: 1216px) {
+      display: block;
+    }
+  }
+  
+  &.ds-container--from-fullhd {
+    display: none;
+    
+    @media screen and (min-width: 1408px) {
+      display: block;
+    }
+  }
+  
+  // Loading state
+  &.is-loading {
+    position: relative;
+    min-height: 100px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+      background-size: 200% 100%;
+      animation: ds-container-loading 1.5s infinite;
+      z-index: 1;
+    }
+    
+    > * {
+      opacity: 0.5;
+    }
+  }
+  
+  // Responsive padding adjustments
+  @media screen and (max-width: 768px) {
+    &.ds-container--padding-large {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    &.ds-container--padding-medium {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    &.ds-container--padding-normal {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    &.ds-container--padding-normal {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    &.ds-container--padding-small {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+}
+
+// Container grid system enhancement
+.ds-container-grid {
+  display: grid;
+  gap: 1.5rem;
+  
+  // Auto-fit responsive columns
+  &.ds-container-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  &.ds-container-grid--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  // Responsive column counts
+  &.ds-container-grid--responsive {
+    grid-template-columns: 1fr;
+    
+    @media screen and (min-width: 769px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media screen and (min-width: 1216px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  // Gap variations
+  &.ds-container-grid--gap-small {
+    gap: 0.75rem;
+  }
+  
+  &.ds-container-grid--gap-medium {
+    gap: 2rem;
+  }
+  
+  &.ds-container-grid--gap-large {
+    gap: 3rem;
+  }
+}
+
+// Container flexbox utilities
+.ds-container-flex {
+  display: flex;
+  
+  &.ds-container-flex--column {
+    flex-direction: column;
+  }
+  
+  &.ds-container-flex--wrap {
+    flex-wrap: wrap;
+  }
+  
+  &.ds-container-flex--center {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &.ds-container-flex--space-between {
+    justify-content: space-between;
+  }
+  
+  &.ds-container-flex--space-around {
+    justify-content: space-around;
+  }
+  
+  &.ds-container-flex--space-evenly {
+    justify-content: space-evenly;
+  }
+}
+
+// Container section variants
+.ds-container-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  
+  &.ds-container-section--small {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  &.ds-container-section--medium {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+  
+  &.ds-container-section--large {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  // Responsive section padding
+  @media screen and (max-width: 768px) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    
+    &.ds-container-section--medium {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    
+    &.ds-container-section--large {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+}
+
+// Keyframe animations
+@keyframes ds-container-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Print styles
+@media print {
+  .ds-container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    
+    &::before {
+      display: none !important;
+    }
+  }
+}

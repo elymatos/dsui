@@ -1,0 +1,19 @@
+/**
+ * DSUI Card Component Styles
+ */
+
+.ds-card {
+  &.ds-card--hoverable:hover {
+    box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+  
+  &.ds-card--padding-small .card-content {
+    padding: 1rem;
+  }
+  
+  &.ds-card--padding-large .card-content {
+    padding: 2rem;
+  }
+}

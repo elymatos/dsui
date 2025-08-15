@@ -261,6 +261,9 @@ import './components/checkbox.js';
 import './components/radio.js';
 import './components/heading.js';
 import './components/text.js';
+import './components/link.js';
+import './components/container.js';
+import './components/alert.js';
 
 // Start Alpine
 Alpine.start();

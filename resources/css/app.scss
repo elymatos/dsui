@@ -10,6 +10,12 @@
 @use 'components/radio.scss';
 @use 'components/heading.scss';
 @use 'components/text.scss';
+@use 'components/link.scss';
+@use 'components/container.scss';
+@use 'components/grid.scss';
+@use 'components/card.scss';
+@use 'components/alert.scss';
+@use 'components/loading.scss';
 
 /* DSUI Custom Design Tokens */
 :root {
