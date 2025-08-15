@@ -1,6 +1,12 @@
 {{-- Select Component with Bulma styling, Alpine.js behavior, and HTMX integration --}}
 
-<div {{ $attributes->merge($getComponentAttributes()) }}>
+<div class="field">
+    @if($label)
+        <label class="label" :id="$id('select-label')">{{ $label }}</label>
+    @endif
+    
+    <div class="control">
+        <div {{ $attributes->merge($getComponentAttributes()) }}>
     {{-- Hidden input for form submission --}}
     @if($name)
         <input type="hidden" name="{{ $name }}" x-model="getFormValue()" />
@@ -118,4 +124,14 @@
             <i class="fas fa-spinner fa-spin"></i>
         </span>
     </div>
+        </div>
+    </div>
+    
+    @if($helpText && !$errorMessage)
+        <p class="help">{{ $helpText }}</p>
+    @endif
+    
+    @if($errorMessage)
+        <p class="help is-danger">{{ $errorMessage }}</p>
+    @endif
 </div>

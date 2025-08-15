@@ -16,6 +16,9 @@ class Select extends BaseComponent
     public bool $clearable;
     public int $maxHeight;
     public ?string $searchPlaceholder;
+    public ?string $label;
+    public ?string $helpText;
+    public ?string $errorMessage;
 
     public function __construct(
         string $variant = 'primary',
@@ -32,7 +35,10 @@ class Select extends BaseComponent
         mixed $value = null,
         bool $clearable = false,
         int $maxHeight = 200,
-        ?string $searchPlaceholder = 'Search options...'
+        ?string $searchPlaceholder = 'Search options...',
+        ?string $label = null,
+        ?string $helpText = null,
+        ?string $errorMessage = null
     ) {
         parent::__construct($variant, $size, $disabled, $loading, $alpineData, $htmxAction);
         
@@ -45,6 +51,9 @@ class Select extends BaseComponent
         $this->clearable = $clearable;
         $this->maxHeight = $maxHeight;
         $this->searchPlaceholder = $searchPlaceholder;
+        $this->label = $label;
+        $this->helpText = $helpText;
+        $this->errorMessage = $errorMessage;
     }
 
     /**
