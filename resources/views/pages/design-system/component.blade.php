@@ -23,6 +23,57 @@
             color: #363636 !important;
         }
         
+        body.force-light-mode .hero {
+            background-color: #f5f5f5 !important;
+            color: #363636 !important;
+        }
+        
+        body.force-light-mode .hero .title {
+            color: #363636 !important;
+        }
+        
+        body.force-light-mode .hero .subtitle {
+            color: #4a4a4a !important;
+        }
+        
+        body.force-light-mode .breadcrumb a {
+            color: #3273dc !important;
+        }
+        
+        /* Force select component styling */
+        .ds-select {
+            position: relative !important;
+            display: block !important;
+            width: 100% !important;
+        }
+        
+        .ds-select .select-trigger {
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 2.5em !important;
+            padding: 0.5em 2.5em 0.5em 0.75em !important;
+            background-color: white !important;
+            border: 1px solid #dbdbdb !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+            box-sizing: border-box !important;
+        }
+        
+        .ds-select .select-trigger:hover {
+            border-color: #b5b5b5 !important;
+        }
+        
+        .ds-select .select-arrow {
+            position: absolute !important;
+            right: 0.75em !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            pointer-events: none !important;
+            color: #4a4a4a !important;
+        }
+        
         .theme-toggle {
             position: fixed;
             top: 20px;
