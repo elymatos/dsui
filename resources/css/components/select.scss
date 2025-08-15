@@ -4,9 +4,9 @@
  */
 
 .ds-select {
-  position: relative;
-  display: block;
-  width: 100%;
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
   
   // Remove default Bulma select styling
   &.select {
@@ -19,17 +19,17 @@
   
   // Select trigger button
   .select-trigger {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    min-height: 2.5em;
-    padding: 0.5em 2.5em 0.5em 0.75em;
-    background-color: hsl(0, 0%, 100%);
-    border: 1px solid hsl(0, 0%, 86%);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 2.5em !important;
+    padding: 0.5em 2.5em 0.5em 0.75em !important;
+    background-color: hsl(0, 0%, 100%) !important;
+    border: 1px solid hsl(0, 0%, 86%) !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
     
     &:focus {
       outline: none;
