@@ -2,128 +2,89 @@
 
 <div class="field">
     @if($label)
-        <label class="label" :id="$id('select-label')">{{ $label }}</label>
+        <label class="label">{{ $label }}</label>
     @endif
     
     <div class="control">
         <div {{ $attributes->merge($getComponentAttributes()) }}>
-    {{-- Hidden input for form submission --}}
-    @if($name)
-        <input type="hidden" name="{{ $name }}" x-model="getFormValue()" />
-    @endif
-    
-    {{-- Select trigger/display --}}
-    <div class="select-trigger" 
-         x-on:click="toggle()" 
-         x-on:keydown.enter.prevent="toggle()"
-         x-on:keydown.space.prevent="toggle()"
-         x-on:keydown.escape="close()"
-         x-on:keydown.arrow-down.prevent="open(); highlightNext()"
-         x-on:keydown.arrow-up.prevent="open(); highlightPrevious()"
-         tabindex="0"
-         :aria-expanded="isOpen"
-         :aria-labelledby="$id('select-label')">
-        
-        <span class="select-value" 
-              :class="{'is-placeholder': !hasSelection()}">
-            <span x-text="getDisplayText()"></span>
-        </span>
-        
-        {{-- Clear button for clearable selects --}}
-        <button type="button" 
-                class="select-clear"
-                x-show="clearable && hasSelection() && !disabled"
-                x-on:click.stop="clear()"
-                x-transition
-                aria-label="Clear selection">
-            <span class="icon is-small">
-                <i class="fas fa-times"></i>
-            </span>
-        </button>
-        
-        {{-- Dropdown arrow --}}
-        <span class="icon is-small select-arrow" :class="{'is-rotated': isOpen}">
-            <i class="fas fa-chevron-down"></i>
-        </span>
-    </div>
-    
-    {{-- Dropdown panel --}}
-    <div class="select-dropdown" 
-         x-show="isOpen" 
-         x-transition:enter="transition ease-out duration-100"
-         x-transition:enter-start="opacity-0 scale-95"
-         x-transition:enter-end="opacity-100 scale-100"
-         x-transition:leave="transition ease-in duration-75"
-         x-transition:leave-start="opacity-100 scale-100"
-         x-transition:leave-end="opacity-0 scale-95"
-         x-on:click.outside="close()"
-         x-cloak
-         :style="{'max-height': maxHeight + 'px'}">
-        
-        {{-- Search input for searchable selects --}}
-        <div class="select-search" x-show="searchable">
-            <div class="control has-icons-left">
-                <input type="text" 
-                       class="input is-small" 
-                       x-model="searchTerm"
-                       x-on:keydown.enter.prevent="selectHighlighted()"
-                       x-on:keydown.escape.prevent="close()"
-                       x-on:keydown.arrow-down.prevent="highlightNext()"
-                       x-on:keydown.arrow-up.prevent="highlightPrevious()"
-                       x-ref="searchInput"
-                       :placeholder="searchPlaceholder">
-                <span class="icon is-left is-small">
-                    <i class="fas fa-search"></i>
+            {{-- Hidden input for form submission --}}
+            @if($name)
+                <input type="hidden" name="{{ $name }}" x-model="getFormValue()" />
+            @endif
+            
+            {{-- Select trigger/display --}}
+            <div class="select-trigger" 
+                 x-on:click="toggle()" 
+                 tabindex="0"
+                 style="
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    min-height: 2.5em;
+                    padding: 0.5em 2.5em 0.5em 0.75em;
+                    background-color: white;
+                    border: 1px solid #dbdbdb;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    box-sizing: border-box;
+                 ">
+                
+                <span class="select-value" style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <span x-text="getDisplayText ? getDisplayText() : '{{ $placeholder }}'">{{ $placeholder }}</span>
+                </span>
+                
+                {{-- Dropdown arrow --}}
+                <span class="select-arrow" style="
+                    position: absolute;
+                    right: 0.75em;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                    color: #4a4a4a;
+                ">
+                    <i class="fas fa-chevron-down"></i>
                 </span>
             </div>
-        </div>
-        
-        {{-- Options list --}}
-        <div class="select-options">
-            <template x-for="(option, index) in filteredOptions" :key="option.value">
-                <div class="select-option"
-                     :class="{
-                         'is-selected': isOptionSelected(option.value),
-                         'is-highlighted': highlightedIndex === index,
-                         'is-disabled': option.disabled
-                     }"
-                     x-on:click="selectOption(option)"
-                     x-on:mouseenter="highlightedIndex = index"
-                     :aria-selected="isOptionSelected(option.value)"
-                     role="option">
-                    
-                    {{-- Multiple select checkbox --}}
-                    <span class="option-checkbox" x-show="multiple">
-                        <input type="checkbox" 
-                               :checked="isOptionSelected(option.value)"
-                               tabindex="-1"
-                               readonly>
-                    </span>
-                    
-                    {{-- Option label --}}
-                    <span class="option-label" x-text="option.label"></span>
-                    
-                    {{-- Selected indicator for single select --}}
-                    <span class="option-check" x-show="!multiple && isOptionSelected(option.value)">
-                        <i class="fas fa-check"></i>
-                    </span>
-                </div>
-            </template>
-            
-            {{-- No options message --}}
-            <div class="select-empty" x-show="filteredOptions.length === 0">
-                <span x-show="searchTerm.length > 0">No options match your search</span>
-                <span x-show="searchTerm.length === 0">No options available</span>
-            </div>
-        </div>
-    </div>
     
-    {{-- Loading indicator --}}
-    <div class="select-loading" x-show="loading">
-        <span class="icon is-small">
-            <i class="fas fa-spinner fa-spin"></i>
-        </span>
-    </div>
+    {{-- Dropdown panel --}}
+            <div class="select-dropdown" 
+                 x-show="isOpen" 
+                 x-cloak
+                 style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    z-index: 1000;
+                    margin-top: 0.25em;
+                    background-color: white;
+                    border: 1px solid #dbdbdb;
+                    border-radius: 4px;
+                    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1);
+                    max-height: 200px;
+                    overflow-y: auto;
+                 ">
+                
+                {{-- Options list --}}
+                <div class="select-options">
+                    @foreach($getFormattedOptions() as $option)
+                        <div class="select-option"
+                             x-on:click="selectOption({{ json_encode($option) }})"
+                             style="
+                                display: flex;
+                                align-items: center;
+                                padding: 0.5em 0.75em;
+                                cursor: pointer;
+                             "
+                             onmouseover="this.style.backgroundColor='#f5f5f5'"
+                             onmouseout="this.style.backgroundColor='transparent'">
+                            
+                            <span class="option-label" style="flex: 1;">{{ $option['label'] }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
     
