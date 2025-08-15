@@ -39,6 +39,10 @@ class DesignSystemServiceProvider extends ServiceProvider
         Blade::component('ds-checkbox', \App\View\Components\DS\Base\Checkbox::class);
         Blade::component('ds-radio', \App\View\Components\DS\Base\Radio::class);
         
+        // Typography Components
+        Blade::component('ds-heading', \App\View\Components\DS\Typography\Heading::class);
+        Blade::component('ds-text', \App\View\Components\DS\Typography\Text::class);
+        
         // Layout Components
         Blade::component('ds-container', \App\View\Components\DS\Layout\Container::class);
         Blade::component('ds-grid', \App\View\Components\DS\Layout\Grid::class);

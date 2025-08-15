@@ -256,6 +256,11 @@ document.addEventListener('htmx:responseError', (event) => {
 import './components/button.js';
 import './components/input.js';
 import './components/textarea.js';
+import './components/select.js';
+import './components/checkbox.js';
+import './components/radio.js';
+import './components/heading.js';
+import './components/text.js';
 
 // Start Alpine
 Alpine.start();

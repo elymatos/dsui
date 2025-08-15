@@ -1,0 +1,319 @@
+/**
+ * DSUI Select Component Styles
+ * Enhanced Bulma select with custom dropdown, search, and multi-select functionality
+ */
+
+.ds-select {
+  position: relative;
+  display: block;
+  width: 100%;
+  
+  // Remove default Bulma select styling
+  &.select {
+    width: 100%;
+    
+    select {
+      display: none; // Hide native select in favor of custom dropdown
+    }
+  }
+  
+  // Select trigger button
+  .select-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 2.5em;
+    padding: 0.5em 2.5em 0.5em 0.75em;
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid hsl(0, 0%, 86%);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+    &:focus {
+      outline: none;
+      border-color: hsl(217, 71%, 53%);
+      box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+    }
+    
+    &:hover {
+      border-color: hsl(0, 0%, 71%);
+    }
+  }
+  
+  // Select value display
+  .select-value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    &.is-placeholder {
+      color: hsl(0, 0%, 48%);
+    }
+  }
+  
+  // Clear button
+  .select-clear {
+    position: absolute;
+    right: 2em;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25em;
+    color: hsl(0, 0%, 48%);
+    transition: color 0.15s ease-in-out;
+    
+    &:hover {
+      color: hsl(348, 86%, 61%);
+    }
+  }
+  
+  // Dropdown arrow
+  .select-arrow {
+    position: absolute;
+    right: 0.75em;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.15s ease-in-out;
+    pointer-events: none;
+    color: hsl(0, 0%, 48%);
+    
+    &.is-rotated {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+  
+  // Dropdown panel
+  .select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin-top: 0.25em;
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid hsl(0, 0%, 86%);
+    border-radius: 4px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    overflow: hidden;
+  }
+  
+  // Search input container
+  .select-search {
+    padding: 0.5em;
+    border-bottom: 1px solid hsl(0, 0%, 96%);
+    
+    .control {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Options container
+  .select-options {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  // Individual option
+  .select-option {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0.75em;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    
+    &:hover,
+    &.is-highlighted {
+      background-color: hsl(0, 0%, 96%);
+    }
+    
+    &.is-selected {
+      background-color: hsl(217, 71%, 53%);
+      color: hsl(0, 0%, 100%);
+      
+      &:hover,
+      &.is-highlighted {
+        background-color: hsl(217, 71%, 45%);
+      }
+    }
+    
+    &.is-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  // Option checkbox for multi-select
+  .option-checkbox {
+    margin-right: 0.5em;
+    
+    input[type="checkbox"] {
+      margin: 0;
+    }
+  }
+  
+  // Option label
+  .option-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  // Selected check mark for single select
+  .option-check {
+    margin-left: 0.5em;
+    color: inherit;
+  }
+  
+  // Empty state
+  .select-empty {
+    padding: 1em;
+    text-align: center;
+    color: hsl(0, 0%, 48%);
+    font-style: italic;
+  }
+  
+  // Loading indicator
+  .select-loading {
+    position: absolute;
+    right: 2.5em;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  // Size variations
+  &.is-small {
+    .select-trigger {
+      min-height: 2em;
+      padding: 0.25em 2em 0.25em 0.5em;
+      font-size: 0.75rem;
+    }
+    
+    .select-clear {
+      right: 1.5em;
+    }
+    
+    .select-arrow {
+      right: 0.5em;
+    }
+  }
+  
+  &.is-medium {
+    .select-trigger {
+      min-height: 3em;
+      padding: 0.75em 3em 0.75em 1em;
+      font-size: 1.25rem;
+    }
+    
+    .select-clear {
+      right: 2.5em;
+    }
+    
+    .select-arrow {
+      right: 1em;
+    }
+  }
+  
+  &.is-large {
+    .select-trigger {
+      min-height: 3.5em;
+      padding: 1em 3.5em 1em 1.25em;
+      font-size: 1.5rem;
+    }
+    
+    .select-clear {
+      right: 3em;
+    }
+    
+    .select-arrow {
+      right: 1.25em;
+    }
+  }
+  
+  // Color variations
+  &.is-primary {
+    .select-trigger:focus {
+      border-color: hsl(171, 100%, 41%);
+      box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+    }
+  }
+  
+  &.is-success {
+    .select-trigger:focus {
+      border-color: hsl(141, 53%, 53%);
+      box-shadow: 0 0 0 0.125em rgba(72, 199, 116, 0.25);
+    }
+  }
+  
+  &.is-warning {
+    .select-trigger:focus {
+      border-color: hsl(48, 100%, 67%);
+      box-shadow: 0 0 0 0.125em rgba(255, 221, 87, 0.25);
+    }
+  }
+  
+  &.is-danger {
+    .select-trigger:focus {
+      border-color: hsl(348, 86%, 61%);
+      box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
+    }
+  }
+  
+  // Disabled state
+  &.is-disabled {
+    .select-trigger {
+      background-color: hsl(0, 0%, 96%);
+      color: hsl(0, 0%, 48%);
+      cursor: not-allowed;
+      
+      &:hover {
+        border-color: hsl(0, 0%, 86%);
+      }
+    }
+  }
+  
+  // Loading state
+  &.is-loading {
+    .select-trigger {
+      padding-right: 4em;
+    }
+  }
+  
+  // Multiple select styling
+  &.is-multiple {
+    .select-value {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25em;
+      min-height: 1.5em;
+    }
+    
+    .select-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.125em 0.5em;
+      background-color: hsl(217, 71%, 53%);
+      color: hsl(0, 0%, 100%);
+      border-radius: 3px;
+      font-size: 0.875em;
+      
+      .tag-remove {
+        margin-left: 0.25em;
+        cursor: pointer;
+        
+        &:hover {
+          color: hsl(348, 86%, 61%);
+        }
+      }
+    }
+  }
+}
