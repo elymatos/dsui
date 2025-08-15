@@ -1,0 +1,258 @@
+/**
+ * DSUI Heading Component Styles
+ * Enhanced Bulma typography with additional features and consistent spacing
+ */
+
+.ds-heading {
+  // Base styling inherits from Bulma's .title and .subtitle classes
+  position: relative;
+  
+  // Custom enhancements
+  &.title {
+    line-height: 1.125;
+    word-break: break-word;
+    
+    // Remove default margins for consistent spacing
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  &.subtitle {
+    line-height: 1.25;
+    word-break: break-word;
+    
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+  }
+  
+  // Link anchor functionality
+  .ds-heading-link {
+    position: absolute;
+    left: -1.5em;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    color: hsl(0, 0%, 71%);
+    text-decoration: none;
+    font-weight: normal;
+    
+    &:hover {
+      color: hsl(217, 71%, 53%);
+      text-decoration: none;
+    }
+  }
+  
+  &:hover .ds-heading-link {
+    opacity: 1;
+  }
+  
+  // Copyable functionality
+  &[data-copyable="true"] {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    
+    &:hover {
+      color: hsl(217, 71%, 53%);
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -1.5em;
+      width: 1em;
+      height: 1em;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23666' d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z'/%3E%3Cpath fill='%23666' d='M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+    
+    &:hover::after {
+      opacity: 0.5;
+    }
+  }
+  
+  // Animation styles
+  &.ds-heading--animated {
+    animation: ds-heading-fade-in 0.6s ease-out;
+  }
+  
+  // Copy feedback
+  &[data-copied="true"] {
+    color: hsl(141, 53%, 53%) !important;
+    
+    &::after {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%2348c774' d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z'/%3E%3C/svg%3E");
+      opacity: 1;
+    }
+  }
+  
+  // Size variations with improved typography scale
+  &.title {
+    &.is-1 {
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.125;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+    
+    &.is-2 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1.125;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.75rem;
+      }
+    }
+    
+    &.is-3 {
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.125;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+    
+    &.is-4 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.25;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+    
+    &.is-5 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+    
+    &.is-6 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+  }
+  
+  &.subtitle {
+    &.is-1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    
+    &.is-2 {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+    
+    &.is-3 {
+      font-size: 1.125rem;
+      font-weight: 400;
+    }
+    
+    &.is-4 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    
+    &.is-5 {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    
+    &.is-6 {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+  }
+  
+  // Custom weight variations
+  &.has-text-weight-light {
+    font-weight: 300;
+  }
+  
+  &.has-text-weight-normal {
+    font-weight: 400;
+  }
+  
+  &.has-text-weight-medium {
+    font-weight: 500;
+  }
+  
+  &.has-text-weight-semibold {
+    font-weight: 600;
+  }
+  
+  &.has-text-weight-bold {
+    font-weight: 700;
+  }
+  
+  // Dark mode support
+  @media (prefers-color-scheme: dark) {
+    &.title, &.subtitle {
+      color: hsl(0, 0%, 96%);
+    }
+    
+    .ds-heading-link {
+      color: hsl(0, 0%, 71%);
+      
+      &:hover {
+        color: hsl(171, 100%, 41%);
+      }
+    }
+  }
+}
+
+// Heading group for better spacing control
+.ds-heading-group {
+  .ds-heading + .ds-heading {
+    margin-top: -1rem;
+  }
+  
+  .ds-heading.title + .ds-heading.subtitle {
+    margin-top: -1.5rem;
+  }
+  
+  .ds-heading.subtitle + .ds-heading.title {
+    margin-top: 1rem;
+  }
+}
+
+// Keyframe animations
+@keyframes ds-heading-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Print styles
+@media print {
+  .ds-heading {
+    .ds-heading-link {
+      display: none;
+    }
+    
+    &::after {
+      display: none;
+    }
+    
+    page-break-after: avoid;
+  }
+}

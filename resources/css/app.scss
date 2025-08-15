@@ -5,6 +5,11 @@
 @use 'components/button.scss';
 @use 'components/input.scss';
 @use 'components/textarea.scss';
+@use 'components/select.scss';
+@use 'components/checkbox.scss';
+@use 'components/radio.scss';
+@use 'components/heading.scss';
+@use 'components/text.scss';
 
 /* DSUI Custom Design Tokens */
 :root {

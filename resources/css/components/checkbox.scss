@@ -1,0 +1,296 @@
+/**
+ * DSUI Checkbox Component Styles
+ * Custom checkbox with Bulma styling, indeterminate state, and accessibility features
+ */
+
+.ds-checkbox {
+  position: relative;
+  display: inline-block;
+  
+  // Checkbox wrapper/label
+  .ds-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    
+    &.is-right {
+      flex-direction: row-reverse;
+    }
+  }
+  
+  // Hide native checkbox
+  .ds-checkbox-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    
+    // Focus styles are handled by the visual element
+    &:focus + .ds-checkbox-visual {
+      outline: 2px solid hsl(217, 71%, 53%);
+      outline-offset: 2px;
+    }
+  }
+  
+  // Custom checkbox visual
+  .ds-checkbox-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid hsl(0, 0%, 86%);
+    border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+    
+    // Hover state
+    .ds-checkbox-wrapper:hover & {
+      border-color: hsl(0, 0%, 71%);
+    }
+    
+    // Checked state
+    &.is-checked {
+      background-color: hsl(217, 71%, 53%);
+      border-color: hsl(217, 71%, 53%);
+      color: hsl(0, 0%, 100%);
+    }
+    
+    // Indeterminate state
+    &.is-indeterminate {
+      background-color: hsl(217, 71%, 53%);
+      border-color: hsl(217, 71%, 53%);
+      color: hsl(0, 0%, 100%);
+    }
+    
+    // Disabled state
+    &.is-disabled {
+      background-color: hsl(0, 0%, 96%);
+      border-color: hsl(0, 0%, 93%);
+      color: hsl(0, 0%, 71%);
+      cursor: not-allowed;
+    }
+    
+    // Color variations
+    &.is-primary {
+      background-color: hsl(171, 100%, 41%);
+      border-color: hsl(171, 100%, 41%);
+    }
+    
+    &.is-success {
+      background-color: hsl(141, 53%, 53%);
+      border-color: hsl(141, 53%, 53%);
+    }
+    
+    &.is-warning {
+      background-color: hsl(48, 100%, 67%);
+      border-color: hsl(48, 100%, 67%);
+      color: rgba(0, 0, 0, 0.7);
+    }
+    
+    &.is-danger {
+      background-color: hsl(348, 86%, 61%);
+      border-color: hsl(348, 86%, 61%);
+    }
+    
+    &.is-info {
+      background-color: hsl(204, 86%, 53%);
+      border-color: hsl(204, 86%, 53%);
+    }
+  }
+  
+  // Checkbox icon (check mark or indeterminate line)
+  .ds-checkbox-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    svg {
+      width: 0.75rem;
+      height: 0.75rem;
+      flex-shrink: 0;
+    }
+  }
+  
+  // Checkbox label
+  .ds-checkbox-label {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: hsl(0, 0%, 29%);
+    
+    &.is-disabled {
+      color: hsl(0, 0%, 71%);
+      cursor: not-allowed;
+    }
+    
+    // Size variations
+    &.is-small {
+      font-size: 0.75rem;
+    }
+    
+    &.is-medium {
+      font-size: 1.25rem;
+    }
+    
+    &.is-large {
+      font-size: 1.5rem;
+    }
+  }
+  
+  // Description text
+  .ds-checkbox-description {
+    margin-top: 0.25rem;
+    margin-left: 1.5rem;
+    font-size: 0.875rem;
+    color: hsl(0, 0%, 48%);
+    line-height: 1.4;
+  }
+  
+  // Loading indicator
+  .ds-checkbox-loading {
+    position: absolute;
+    top: 0;
+    right: -1.5rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  // Size variations
+  &.is-small {
+    .ds-checkbox-visual {
+      width: 0.875rem;
+      height: 0.875rem;
+      min-width: 0.875rem;
+      min-height: 0.875rem;
+    }
+    
+    .ds-checkbox-icon svg {
+      width: 0.625rem;
+      height: 0.625rem;
+    }
+    
+    .ds-checkbox-description {
+      margin-left: 1.375rem;
+      font-size: 0.75rem;
+    }
+  }
+  
+  &.is-medium {
+    .ds-checkbox-visual {
+      width: 1.25rem;
+      height: 1.25rem;
+      min-width: 1.25rem;
+      min-height: 1.25rem;
+    }
+    
+    .ds-checkbox-icon svg {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+    .ds-checkbox-description {
+      margin-left: 1.75rem;
+    }
+  }
+  
+  &.is-large {
+    .ds-checkbox-visual {
+      width: 1.5rem;
+      height: 1.5rem;
+      min-width: 1.5rem;
+      min-height: 1.5rem;
+    }
+    
+    .ds-checkbox-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    
+    .ds-checkbox-description {
+      margin-left: 2rem;
+      font-size: 1rem;
+    }
+  }
+  
+  // Right-aligned checkbox
+  &.ds-checkbox--right {
+    .ds-checkbox-description {
+      margin-left: 0;
+      margin-right: 1.5rem;
+    }
+    
+    &.is-small .ds-checkbox-description {
+      margin-right: 1.375rem;
+    }
+    
+    &.is-medium .ds-checkbox-description {
+      margin-right: 1.75rem;
+    }
+    
+    &.is-large .ds-checkbox-description {
+      margin-right: 2rem;
+    }
+  }
+  
+  // Disabled state for entire component
+  &.is-disabled {
+    .ds-checkbox-wrapper {
+      cursor: not-allowed;
+    }
+    
+    .ds-checkbox-label {
+      color: hsl(0, 0%, 71%);
+    }
+    
+    .ds-checkbox-description {
+      color: hsl(0, 0%, 71%);
+    }
+  }
+  
+  // Group styles for multiple checkboxes
+  .ds-checkbox-group & {
+    margin-bottom: 0.5rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Checkbox group container
+.ds-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  &.is-horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  // Group title
+  .ds-checkbox-group-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: hsl(0, 0%, 29%);
+  }
+  
+  // Group description
+  .ds-checkbox-group-description {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: hsl(0, 0%, 48%);
+    line-height: 1.4;
+  }
+}
