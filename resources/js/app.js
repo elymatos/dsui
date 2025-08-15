@@ -4,6 +4,9 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import htmx from 'htmx.org';
 
+// Make Alpine globally available
+window.Alpine = Alpine;
+
 // Initialize HTMX
 window.htmx = htmx;
 
